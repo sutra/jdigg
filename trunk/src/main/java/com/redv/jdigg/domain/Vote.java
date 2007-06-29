@@ -16,6 +16,8 @@ public class Vote implements Serializable {
 	 */
 	private static final long serialVersionUID = -5953372209844099655L;
 
+	private String id;
+
 	private Story story;
 
 	private User voter;
@@ -25,6 +27,21 @@ public class Vote implements Serializable {
 	private short value;
 
 	private String ip;
+
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	/**
 	 * @return the date
