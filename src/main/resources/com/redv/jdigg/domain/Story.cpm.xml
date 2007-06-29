@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE compass-core-mapping PUBLIC
+    "-//Compass/Compass Core Mapping DTD 1.0//EN"
+    "http://www.opensymphony.com/compass/dtd/compass-core-mapping.dtd">
+
+<compass-core-mapping package="com.redv.jdigg.domain">
+	<class name="Story" alias="story">
+		<id name="id" />
+		<property name="title">
+			<meta-data>title</meta-data>
+		</property>
+		<property name="body">
+			<meta-data>body</meta-data>
+		</property>
+	</class>
+</compass-core-mapping>

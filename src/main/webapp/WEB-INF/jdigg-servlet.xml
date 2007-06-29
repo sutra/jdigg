@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="loginController"
+		class="com.redv.jdigg.web.openid.LoginController">
+		<property name="diggService" ref="diggService" />
+	</bean>
+	<bean id="logoutController"
+		class="com.redv.jdigg.web.openid.LogoutController">
+	</bean>
+
+	<bean id="searchController"
+		class="org.compass.spring.web.mvc.CompassSearchController">
+		<property name="compass">
+			<ref bean="compass" />
+		</property>
+		<property name="searchView">
+			<value>search</value>
+		</property>
+		<property name="searchResultsView">
+			<value>search</value>
+		</property>
+		<property name="pageSize">
+			<value>10</value>
+		</property>
+	</bean>
+	<bean id="indexController"
+		class="org.compass.spring.web.mvc.CompassIndexController">
+		<property name="compassGps">
+			<ref bean="compassGps" />
+		</property>
+		<property name="indexView">
+			<value>indexView</value>
+		</property>
+		<property name="indexResultsView">
+			<value>indexView</value>
+		</property>
+	</bean>
+
+	<!-- View Resolver for JSPs -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				/login.html=loginController
+				/logout.html=logoutController
+				/search.html=searchController
+				/index.html=indexController
+			</value>
+		</property>
+		<property name="interceptors">
+			<list>
+				<ref local="localChangeInterceptor" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>ApplicationResources</value>
+			</list>
+		</property>
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+
+	<bean id="localChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="hl" />
+	</bean>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+
+</beans>
