@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.redv.jdigg.domain">
+	<class name="Story" table="story">
+		<id name="id" type="java.lang.String" length="32">
+			<generator class="uuid" />
+		</id>
+		<property name="url" unique="true" index="url" />
+		<property name="title" length="75" />
+		<property name="body" length="350" />
+		<property name="date" type="timestamp" />
+		<property name="rank" />
+		<many-to-one name="digger" />
+	</class>
+</hibernate-mapping>

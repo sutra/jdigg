@@ -10,5 +10,7 @@ import com.redv.jdigg.domain.Story;
  * 
  */
 public interface StoryDao {
-	Story getSotry(String id);
+	Story getStory(String id);
+
+	void saveStory(Story story);
 }
