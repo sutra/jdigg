@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.redv.jdigg.domain">
+	<class name="User" table="user">
+		<id name="id" type="java.lang.String" length="32">
+			<generator class="uuid" />
+		</id>
+		<property name="openid" unique="true" index="openid" />
+		<property name="joinDate" type="timestamp" update="false" />
+
+		<property name="nickname" length="255" />
+		<property name="email" length="255" />
+		<property name="fullname" length="255" />
+		<property name="dob" type="date" />
+		<property name="gender" type="java.lang.String" length="1" />
+		<property name="postcode" />
+		<property name="country" />
+		<property name="language" />
+		<property name="timezone" />
+	</class>
+</hibernate-mapping>

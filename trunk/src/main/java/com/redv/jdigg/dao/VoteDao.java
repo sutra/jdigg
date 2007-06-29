@@ -12,5 +12,5 @@ import com.redv.jdigg.domain.Vote;
 public interface VoteDao {
 	Vote getVote(String id);
 
-	void vote(Vote vote);
+	void saveVote(Vote vote);
 }
