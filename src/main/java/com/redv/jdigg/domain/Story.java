@@ -16,6 +16,8 @@ public class Story implements Serializable {
 	 */
 	private static final long serialVersionUID = 6701809656199379709L;
 
+	private String id;
+
 	private String url;
 
 	private String title;
@@ -25,6 +27,23 @@ public class Story implements Serializable {
 	private User digger;
 
 	private Date date;
+
+	private long rank;
+
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	/**
 	 * @return the body
@@ -99,6 +118,21 @@ public class Story implements Serializable {
 	 */
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	/**
+	 * @return the rank
+	 */
+	public long getRank() {
+		return rank;
+	}
+
+	/**
+	 * @param rank
+	 *            the rank to set
+	 */
+	public void setRank(long rank) {
+		this.rank = rank;
 	}
 
 }
