@@ -81,7 +81,8 @@ public class LoginController implements Controller {
 					response.sendRedirect(redirectUrl);
 				}
 				log.debug("Session setted.");
-				return new ModelAndView("index");
+				response.sendRedirect(request.getContextPath() + "/");
+				return null;
 			} else {
 				return new ModelAndView("login-fail");
 			}
