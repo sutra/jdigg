@@ -21,6 +21,30 @@ public class DiggServiceImpl implements DiggService {
 
 	private VoteDao voteDao;
 
+	/**
+	 * @param storyDao
+	 *            要设置的 storyDao
+	 */
+	public void setStoryDao(StoryDao storyDao) {
+		this.storyDao = storyDao;
+	}
+
+	/**
+	 * @param userDao
+	 *            要设置的 userDao
+	 */
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+
+	/**
+	 * @param voteDao
+	 *            要设置的 voteDao
+	 */
+	public void setVoteDao(VoteDao voteDao) {
+		this.voteDao = voteDao;
+	}
+
 	/*
 	 * （非 Javadoc）
 	 * 
