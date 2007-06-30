@@ -12,6 +12,8 @@
 		<meta http-equiv="Content-Type"
 			content="application/xhtml-xml; charset=UTF-8" />
 		<meta content="all" name="robots" />
+		<script src='${ctx}/dwr/interface/Digg.js'></script>
+		<script src='${ctx}/dwr/engine.js'></script>
 		<decorator:head />
 	</head>
 	<body>

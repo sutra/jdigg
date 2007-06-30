@@ -26,7 +26,8 @@
 		<param-value>
 			/WEB-INF/applicationContext.xml,
 			/WEB-INF/applicationContext-hibernate3.xml,
-			/WEB-INF/applicationContext-compass.xml
+			/WEB-INF/applicationContext-compass.xml,
+			/WEB-INF/applicationContext-dwr.xml
 		</param-value>
 	</context-param>
 
@@ -89,10 +90,22 @@
 		</servlet-class>
 		<load-on-startup>0</load-on-startup>
 	</servlet>
+	<servlet>
+		<servlet-name>dwr-invoker</servlet-name>
+		<servlet-class>uk.ltd.getahead.dwr.DWRServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>jdigg</servlet-name>
 		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>dwr-invoker</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>
