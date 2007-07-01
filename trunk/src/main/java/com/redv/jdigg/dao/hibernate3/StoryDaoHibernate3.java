@@ -5,6 +5,8 @@ package com.redv.jdigg.dao.hibernate3;
 
 import java.util.List;
 
+import org.hibernate.Query;
+
 import com.redv.jdigg.dao.StoryDao;
 import com.redv.jdigg.domain.Story;
 
@@ -36,12 +38,15 @@ public class StoryDaoHibernate3 extends BaseDaoHibernate3<Story> implements
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see com.redv.jdigg.dao.StoryDao#getRankingStories(com.redv.jdigg.domain.Story,
-	 *      int, int)
+	 * @see com.redv.jdigg.dao.StoryDao#getRankingStories(int, int)
 	 */
-	public List<Story> getRankingStories(Story exampleStory, int firstResult,
-			int maxResults) {
-		return findByExample(exampleStory, firstResult, maxResults);
+	@SuppressWarnings("unchecked")
+	public List<Story> getRankingStories(int firstResult, int maxResults) {
+		Query query = this.getSession().createQuery(
+				"from Story order by rank desc");
+		query.setFirstResult(firstResult);
+		query.setMaxResults(maxResults);
+		return query.list();
 	}
 
 }

@@ -60,13 +60,10 @@ public class DiggServiceImpl implements DiggService {
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see com.redv.jdigg.service.DiggService#getRankingStories(com.redv.jdigg.domain.Story,
-	 *      int, int)
+	 * @see com.redv.jdigg.service.DiggService#getRankingStories(int, int)
 	 */
-	public List<Story> getRankingStories(Story exampleStory, int firstResult,
-			int maxResults) {
-		return storyDao
-				.getRankingStories(exampleStory, firstResult, maxResults);
+	public List<Story> getRankingStories(int firstResult, int maxResults) {
+		return storyDao.getRankingStories(firstResult, maxResults);
 	}
 
 	/*
