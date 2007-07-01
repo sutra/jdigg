@@ -14,8 +14,7 @@ import com.redv.jdigg.domain.Story;
 public interface StoryDao {
 	Story getStory(String id);
 
-	List<Story> getRankingStories(Story exampleStory, int firstResult,
-			int maxResults);
+	List<Story> getRankingStories(int firstResult, int maxResults);
 
 	void saveStory(Story story);
 }

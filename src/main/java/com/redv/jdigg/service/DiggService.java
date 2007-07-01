@@ -16,8 +16,7 @@ import com.redv.jdigg.domain.Vote;
 public interface DiggService {
 	Story getStory(String id);
 
-	List<Story> getRankingStories(Story exampleStory, int firstResult,
-			int maxResults);
+	List<Story> getRankingStories(int firstResult, int maxResults);
 
 	void saveStory(Story story);
 

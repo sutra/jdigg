@@ -10,7 +10,6 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.service.DiggService;
 
 /**
@@ -36,13 +35,12 @@ public class PopularStoriesController implements Controller {
 	 */
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		Story exampleStory = new Story();
 		int firstResult = NumberUtils.toInt(
 				request.getParameter("firstResult"), 0);
 		int maxResults = NumberUtils.toInt(request.getParameter("maxResults"),
 				15);
 		return new ModelAndView("popular-stories", "stories", diggService
-				.getRankingStories(exampleStory, firstResult, maxResults));
+				.getRankingStories(firstResult, maxResults));
 	}
 
 }
