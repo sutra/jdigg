@@ -10,7 +10,7 @@ import com.redv.jdigg.domain.Vote;
  * 
  */
 public interface VoteDao {
-	Vote getVote(String id);
+	Vote getVote(String storyId, String voterId);
 
 	void saveVote(Vote vote);
 }
