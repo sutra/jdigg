@@ -4,5 +4,8 @@
 		<create creator="spring" javascript="Digg">
 			<param name="beanName" value="digg" />
 		</create>
+		<create creator="new" javascript="User">
+			<param name="class" value="com.redv.jdigg.web.dwr.User" />
+		</create>
 	</allow>
 </dwr>

@@ -12,6 +12,7 @@
 			<props>
 				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="digg">PROPAGATION_REQUIRED</prop>
 			</props>
 		</property>
 	</bean>

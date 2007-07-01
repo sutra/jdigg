@@ -3,6 +3,7 @@
  */
 package com.redv.jdigg.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.redv.jdigg.dao.StoryDao;
@@ -89,15 +90,6 @@ public class DiggServiceImpl implements DiggService {
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see com.redv.jdigg.service.DiggService#getVote(java.lang.String)
-	 */
-	public Vote getVote(String id) {
-		return voteDao.getVote(id);
-	}
-
-	/*
-	 * （非 Javadoc）
-	 * 
 	 * @see com.redv.jdigg.service.DiggService#saveStory(com.redv.jdigg.domain.Story)
 	 */
 	public void saveStory(Story story) {
@@ -122,4 +114,26 @@ public class DiggServiceImpl implements DiggService {
 		voteDao.saveVote(vote);
 	}
 
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see com.redv.jdigg.service.DiggService#digg(java.lang.String,
+	 *      java.lang.String, java.lang.String)
+	 */
+	public void digg(String storyId, String userId, String ip) {
+		Vote vote = voteDao.getVote(storyId, userId);
+		if (vote == null) {
+			vote = new Vote();
+			vote.setStory(storyDao.getStory(storyId));
+			vote.setVoter(userDao.getUser(userId));
+		}
+		vote.setDate(new Date());
+		vote.setIp(ip);
+		vote.setValue((short) 1);
+		voteDao.saveVote(vote);
+
+		long rank = vote.getStory().getRank() + 1;
+		vote.getStory().setRank(rank);
+		storyDao.saveStory(vote.getStory());
+	}
 }

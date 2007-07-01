@@ -30,7 +30,7 @@ public class StoryDaoHibernate3 extends BaseDaoHibernate3<Story> implements
 	 * @see com.redv.jdigg.dao.StoryDao#saveStory(com.redv.jdigg.domain.Story)
 	 */
 	public void saveStory(Story story) {
-		this.getHibernateTemplate().save(story);
+		this.getHibernateTemplate().saveOrUpdate(story);
 	}
 
 	/*
