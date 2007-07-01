@@ -41,6 +41,12 @@
 			<value>indexView</value>
 		</property>
 	</bean>
+	
+	<bean id="submitController" class="com.redv.jdigg.web.SubmitController">
+		<property name="commandClass" value="com.redv.jdigg.domain.Story" />
+		<property name="formView" value="submit" />
+		<property name="diggService" ref="diggService" />
+	</bean>
 
 	<!-- View Resolver for JSPs -->
 	<bean id="viewResolver"
@@ -67,6 +73,20 @@
 			</list>
 		</property>
 	</bean>
+	<bean id="secureUrlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				/submit.html=submitController
+			</value>
+		</property>
+		<property name="interceptors">
+			<list>
+				<ref local="localChangeInterceptor" />
+				<ref local="userLoginInterceptor" />
+			</list>
+		</property>
+	</bean>
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -81,6 +101,11 @@
 	<bean id="localChangeInterceptor"
 		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 		<property name="paramName" value="hl" />
+	</bean>
+
+	<bean id="userLoginInterceptor"
+		class="com.redv.jdigg.web.interceptor.UserLoginInterceptor">
+		<property name="login" value="/login.html" />
 	</bean>
 
 	<bean id="localeResolver"
