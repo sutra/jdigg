@@ -34,4 +34,11 @@ public abstract class BaseDaoHibernate3<T> extends HibernateDaoSupport {
 	public List<T> find(String queryString, Object value) {
 		return (List<T>) getHibernateTemplate().find(queryString, value);
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<T> findByExample(Object exampleEntity, int firstResult,
+			int maxResults) {
+		return (List<T>) getHibernateTemplate().findByExample(exampleEntity,
+				firstResult, maxResults);
+	}
 }

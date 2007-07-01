@@ -41,10 +41,21 @@
 			<value>indexView</value>
 		</property>
 	</bean>
-	
+
+	<bean id="profileController" class="com.redv.jdigg.web.ProfileController">
+		<property name="commandClass" value="com.redv.jdigg.domain.User" />
+		<property name="formView" value="profile" />
+		<property name="successView" value="profile" />
+		<property name="diggService" ref="diggService" />
+	</bean>
+
 	<bean id="submitController" class="com.redv.jdigg.web.SubmitController">
 		<property name="commandClass" value="com.redv.jdigg.domain.Story" />
 		<property name="formView" value="submit" />
+		<property name="successView" value="submit" />
+		<property name="diggService" ref="diggService" />
+	</bean>
+	<bean id="popularStoriesController" class="com.redv.jdigg.web.PopularStoriesController">
 		<property name="diggService" ref="diggService" />
 	</bean>
 
@@ -65,6 +76,7 @@
 				/logout.html=logoutController
 				/search.html=searchController
 				/index.html=indexController
+				/popular-stories.html=popularStoriesController
 			</value>
 		</property>
 		<property name="interceptors">
@@ -77,6 +89,7 @@
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<value>
+				/profile.html=profileController
 				/submit.html=submitController
 			</value>
 		</property>
