@@ -3,6 +3,8 @@
  */
 package com.redv.jdigg.web.dwr;
 
+import java.util.List;
+
 import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.service.DiggService;
 
@@ -23,5 +25,11 @@ public class Digg {
 
 	public Story getStory(String id) {
 		return diggService.getStory(id);
+	}
+
+	public List<Story> getRankingStories(Story exampleStory, int firstResult,
+			int maxResults) {
+		return diggService.getRankingStories(exampleStory, firstResult,
+				maxResults);
 	}
 }

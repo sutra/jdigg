@@ -11,6 +11,6 @@
 		<property name="body" length="350" />
 		<property name="date" type="timestamp" />
 		<property name="rank" />
-		<many-to-one name="digger" />
+		<many-to-one name="digger" not-null="true" />
 	</class>
 </hibernate-mapping>

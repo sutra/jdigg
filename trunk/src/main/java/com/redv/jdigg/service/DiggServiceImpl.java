@@ -3,6 +3,8 @@
  */
 package com.redv.jdigg.service;
 
+import java.util.List;
+
 import com.redv.jdigg.dao.StoryDao;
 import com.redv.jdigg.dao.UserDao;
 import com.redv.jdigg.dao.VoteDao;
@@ -52,6 +54,18 @@ public class DiggServiceImpl implements DiggService {
 	 */
 	public Story getStory(String id) {
 		return storyDao.getStory(id);
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see com.redv.jdigg.service.DiggService#getRankingStories(com.redv.jdigg.domain.Story,
+	 *      int, int)
+	 */
+	public List<Story> getRankingStories(Story exampleStory, int firstResult,
+			int maxResults) {
+		return storyDao
+				.getRankingStories(exampleStory, firstResult, maxResults);
 	}
 
 	/*

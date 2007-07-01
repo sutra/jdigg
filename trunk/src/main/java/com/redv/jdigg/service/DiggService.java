@@ -3,6 +3,8 @@
  */
 package com.redv.jdigg.service;
 
+import java.util.List;
+
 import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.domain.User;
 import com.redv.jdigg.domain.Vote;
@@ -13,6 +15,9 @@ import com.redv.jdigg.domain.Vote;
  */
 public interface DiggService {
 	Story getStory(String id);
+
+	List<Story> getRankingStories(Story exampleStory, int firstResult,
+			int maxResults);
 
 	void saveStory(Story story);
 

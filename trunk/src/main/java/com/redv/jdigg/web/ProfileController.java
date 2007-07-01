@@ -5,12 +5,8 @@ package com.redv.jdigg.web;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
-import com.redv.jdigg.Constants;
-import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.domain.User;
 import com.redv.jdigg.service.DiggService;
 
@@ -18,9 +14,7 @@ import com.redv.jdigg.service.DiggService;
  * @author <a href="mailto:zhoushuqun@gmail.com">Sutra Zhou</a>
  * 
  */
-public class SubmitController extends SimpleFormController {
-	private static final Log log = LogFactory.getLog(SubmitController.class);
-
+public class ProfileController extends SimpleFormController {
 	private DiggService diggService;
 
 	/**
@@ -39,10 +33,7 @@ public class SubmitController extends SimpleFormController {
 	@Override
 	protected Object formBackingObject(HttpServletRequest request)
 			throws Exception {
-		Story story = (Story) super.formBackingObject(request);
-		story.setDigger((User) request.getSession().getAttribute(
-				Constants.CURRENT_USER));
-		return story;
+		return diggService.getUser(request.getParameter("id"));
 	}
 
 	/*
@@ -52,9 +43,6 @@ public class SubmitController extends SimpleFormController {
 	 */
 	@Override
 	protected void doSubmitAction(Object command) throws Exception {
-		Story story = (Story) command;
-		log.debug("story.digger: " + story.getDigger().getOpenid());
-		diggService.saveStory(story);
+		diggService.saveUser((User) command);
 	}
-
 }
