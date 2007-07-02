@@ -6,7 +6,7 @@
 		<id name="id" type="java.lang.String" length="32">
 			<generator class="uuid" />
 		</id>
-		<property name="openid" unique="true" index="openid" />
+		<property name="openid" unique="true" not-null="true" index="openid" />
 		<property name="joinDate" type="timestamp" update="false" />
 
 		<property name="nickname" length="255" />

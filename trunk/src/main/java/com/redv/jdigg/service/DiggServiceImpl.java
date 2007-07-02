@@ -123,14 +123,19 @@ public class DiggServiceImpl implements DiggService {
 			vote = new Vote();
 			vote.setStory(storyDao.getStory(storyId));
 			vote.setVoter(userDao.getUser(userId));
+			long rank = vote.getStory().getRank() + 1;
+			vote.getStory().setRank(rank);
+			storyDao.saveStory(vote.getStory());
+		} else {
+			long rank = vote.getStory().getRank();
+			rank -= vote.getValue();
+			rank += 1;
+			vote.getStory().setRank(rank);
+			storyDao.saveStory(vote.getStory());
 		}
 		vote.setDate(new Date());
 		vote.setIp(ip);
 		vote.setValue((short) 1);
 		voteDao.saveVote(vote);
-
-		long rank = vote.getStory().getRank() + 1;
-		vote.getStory().setRank(rank);
-		storyDao.saveStory(vote.getStory());
 	}
 }
