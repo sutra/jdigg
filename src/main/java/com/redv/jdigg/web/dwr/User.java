@@ -46,4 +46,9 @@ public class User {
 		String ip = request.getRemoteAddr();
 		diggService.digg(storyId, currentUser.getId(), ip);
 	}
+
+	public void bury(String storyId) {
+		String ip = request.getRemoteAddr();
+		diggService.bury(storyId, currentUser.getId(), ip);
+	}
 }

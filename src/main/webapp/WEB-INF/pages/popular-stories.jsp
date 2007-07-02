@@ -28,5 +28,7 @@ ${story.rank} diggs
 <a href="<c:url value="/users/${story.digger.id}" />"><c:out value="${story.digger.nickname}" escapeXml="true" /></a>
  submitted.
 
+<a href="javascript:User.bury('${story.id}', reply0)">Bury</a>
+
 </div>
 </c:forEach>

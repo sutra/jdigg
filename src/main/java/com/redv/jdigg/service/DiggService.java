@@ -29,4 +29,6 @@ public interface DiggService {
 	void saveVote(Vote vote);
 
 	void digg(String storyId, String userId, String ip);
+
+	void bury(String storyId, String userId, String ip);
 }
