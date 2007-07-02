@@ -117,8 +117,8 @@ public class DiggServiceImpl implements DiggService {
 	 * @see com.redv.jdigg.service.DiggService#digg(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
-	public void digg(String storyId, String userId, String ip) {
-		vote(storyId, userId, ip, (short) 1);
+	public Story digg(String storyId, String userId, String ip) {
+		return vote(storyId, userId, ip, (short) 1);
 	}
 
 	/*
@@ -127,11 +127,11 @@ public class DiggServiceImpl implements DiggService {
 	 * @see com.redv.jdigg.service.DiggService#bury(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
-	public void bury(String storyId, String userId, String ip) {
-		vote(storyId, userId, ip, (short) -1);
+	public Story bury(String storyId, String userId, String ip) {
+		return vote(storyId, userId, ip, (short) -1);
 	}
 
-	private void vote(String storyId, String userId, String ip, short voteValue) {
+	private Story vote(String storyId, String userId, String ip, short voteValue) {
 		Vote vote = voteDao.getVote(storyId, userId);
 		if (vote == null) {
 			vote = new Vote();
@@ -148,5 +148,7 @@ public class DiggServiceImpl implements DiggService {
 		vote.setIp(ip);
 		vote.setValue(voteValue);
 		voteDao.saveVote(vote);
+		
+		return vote.getStory();
 	}
 }
