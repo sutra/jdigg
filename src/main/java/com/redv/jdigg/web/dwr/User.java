@@ -12,6 +12,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.redv.jdigg.Constants;
+import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.service.DiggService;
 
 /**
@@ -42,13 +43,13 @@ public class User {
 				.getAttribute(Constants.CURRENT_USER);
 	}
 
-	public void digg(String storyId) {
+	public Story digg(String storyId) {
 		String ip = request.getRemoteAddr();
-		diggService.digg(storyId, currentUser.getId(), ip);
+		return diggService.digg(storyId, currentUser.getId(), ip);
 	}
 
-	public void bury(String storyId) {
+	public Story bury(String storyId) {
 		String ip = request.getRemoteAddr();
-		diggService.bury(storyId, currentUser.getId(), ip);
+		return diggService.bury(storyId, currentUser.getId(), ip);
 	}
 }
