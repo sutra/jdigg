@@ -35,7 +35,7 @@ display: block;
 		</form>
 		</c:when>
 		<c:otherwise>
-		<a href="<c:url value="/users/${currentUser.id}" />">
+		<a href="<c:url value="/profile.html" />">
 		<c:out value="${currentUser.openid}" />
 		</a>
 		</c:otherwise>
