@@ -118,24 +118,35 @@ public class DiggServiceImpl implements DiggService {
 	 *      java.lang.String, java.lang.String)
 	 */
 	public void digg(String storyId, String userId, String ip) {
+		vote(storyId, userId, ip, (short) 1);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.redv.jdigg.service.DiggService#bury(java.lang.String,
+	 *      java.lang.String, java.lang.String)
+	 */
+	public void bury(String storyId, String userId, String ip) {
+		vote(storyId, userId, ip, (short) -1);
+	}
+
+	private void vote(String storyId, String userId, String ip, short voteValue) {
 		Vote vote = voteDao.getVote(storyId, userId);
 		if (vote == null) {
 			vote = new Vote();
 			vote.setStory(storyDao.getStory(storyId));
 			vote.setVoter(userDao.getUser(userId));
-			long rank = vote.getStory().getRank() + 1;
-			vote.getStory().setRank(rank);
-			storyDao.saveStory(vote.getStory());
-		} else {
-			long rank = vote.getStory().getRank();
-			rank -= vote.getValue();
-			rank += 1;
-			vote.getStory().setRank(rank);
-			storyDao.saveStory(vote.getStory());
 		}
+		long rank = vote.getStory().getRank();
+		rank -= vote.getValue();
+		rank += voteValue;
+		vote.getStory().setRank(rank);
+		storyDao.saveStory(vote.getStory());
+
 		vote.setDate(new Date());
 		vote.setIp(ip);
-		vote.setValue((short) 1);
+		vote.setValue(voteValue);
 		voteDao.saveVote(vote);
 	}
 }
