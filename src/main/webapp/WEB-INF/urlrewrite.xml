@@ -8,7 +8,7 @@
 
 	<rule>
 		<from>^/users/(.*)$</from>
-		<to>/profile.html?id=$1</to>
+		<to>/user.html?id=$1</to>
 	</rule>
 
 </urlrewrite>
