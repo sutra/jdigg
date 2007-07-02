@@ -66,6 +66,7 @@ public class LoginController implements Controller {
 			Identifier id = this.consumer.verifyResponse(request);
 			String redirectUrl = (String) request.getSession().getAttribute(
 					Constants.ORIGINAL_URL);
+			log.debug("redirectUrl: " + redirectUrl);
 
 			if (id != null && StringUtils.isNotEmpty(id.getIdentifier())) {
 				User user = diggService.getUserByOpenid(id.getIdentifier());
@@ -76,12 +77,12 @@ public class LoginController implements Controller {
 					user.setOpenid(id.getIdentifier());
 					diggService.saveUser(user);
 				}
-				request.getSession().setAttribute("currentUser", user);
+				request.getSession().setAttribute(Constants.CURRENT_USER, user);
 				if (StringUtils.isNotBlank(redirectUrl)) {
 					response.sendRedirect(redirectUrl);
+				} else {
+					response.sendRedirect(request.getContextPath());
 				}
-				log.debug("Session setted.");
-				response.sendRedirect(request.getContextPath() + "/");
 				return null;
 			} else {
 				return new ModelAndView("login-fail");
