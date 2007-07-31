@@ -32,8 +32,10 @@ else {
 <p>
 <c:out value="${story.body}" escapeXml="true" />
 &nbsp;
+<!-- 
 <a href="<c:url value="/${story.id}" />" class="more">More&#8230;
 </a>
+ -->
 </p>
 
 <span id="diggs_${story.id}">${story.rank}</span> diggs
@@ -48,6 +50,6 @@ else {
 </c:forEach>
 
 <div class="pageBar">
-<a href="?firstResult=${firstResult - maxResults}&maxResults=${maxResults}">Previous</a>
-<a href="?firstResult=${firstResult + maxResults}&maxResults=${maxResults}">Next</a>
+<a href="?firstResult=${firstResult - maxResults}&maxResults=${maxResults}"><fmt:message key="Previous" /></a>
+<a href="?firstResult=${firstResult + maxResults}&maxResults=${maxResults}"><fmt:message key="Next" /></a>
 </div>
