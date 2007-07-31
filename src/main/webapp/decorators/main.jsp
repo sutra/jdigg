@@ -24,6 +24,24 @@ display: block;
 .pageBar {
 	margin-top: 30px;
 }
+input.sexy {
+	background: url(http://openid.net/login-bg.gif) no-repeat;
+	background-color: #fff;
+	background-position: 0 50%;
+	color: #000;
+	padding-left: 18px;
+	border: 1px #A5ACB2 solid;
+}
+input.story_url {
+	width: 80%;
+}
+input.story_title {
+	width: 80%;
+}
+textarea.story_body {
+	width: 100%;
+	height: 250px;
+}
 </style>
 
 		<decorator:head />
@@ -33,20 +51,21 @@ display: block;
 		<c:choose>
 		<c:when test="${currentUser == null}">
 		<form action="login.html" method="post">
-			<input type="text" name="openid_url" />
-			<input type="submit" value="Login" />
+			<input type="text" name="openid_url" class="sexy" />
+			<input type="submit" value="<fmt:message key="Login" />" />
 		</form>
 		</c:when>
 		<c:otherwise>
 		<a href="<c:url value="/profile.html" />">
 		<c:out value="${currentUser.openid}" />
 		</a>
+		<a href=""><fmt:message key="Logout" /></a>
 		</c:otherwise>
 		</c:choose>
 		</div>
 		<div>
-		<a href="<c:url value="/popular-stories.html" />">Popular Stories</a>
-		<a href="<c:url value="/submit.html" />">Submit a New Story</a>
+		<a href="<c:url value="/popular-stories.html" />"><fmt:message key="Popular_Stories" /></a>
+		<a href="<c:url value="/submit.html" />"><fmt:message key="Submit_a_New_Story" /></a>
 		</div>
 		<div>
 			<decorator:body />
