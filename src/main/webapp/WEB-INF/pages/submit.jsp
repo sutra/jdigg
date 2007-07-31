@@ -8,6 +8,7 @@
 <legend>Submit a New Story</legend>
 	<label for="url" accesskey="1">Enter the URL of the Story</label>
 	<form:input path="url" cssClass="form-text" />
+	<form:errors path="url" />
 	<label for="title" accesskey="2">Title</label>
 	<form:input path="title" />
 	<label for="body" accesskey="3">Body</label>

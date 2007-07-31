@@ -6,6 +6,7 @@ package com.redv.jdigg.service;
 import java.util.Date;
 import java.util.List;
 
+import com.redv.jdigg.StoryAlreadyExistsException;
 import com.redv.jdigg.dao.StoryDao;
 import com.redv.jdigg.dao.UserDao;
 import com.redv.jdigg.dao.VoteDao;
@@ -89,8 +90,12 @@ public class DiggServiceImpl implements DiggService {
 	 * 
 	 * @see com.redv.jdigg.service.DiggService#saveStory(com.redv.jdigg.domain.Story)
 	 */
-	public void saveStory(Story story) {
-		storyDao.saveStory(story);
+	public void saveStory(Story story) throws StoryAlreadyExistsException {
+		if (storyDao.getStoryByUrl(story.getUrl()) == null) {
+			storyDao.saveStory(story);
+		} else {
+			throw new StoryAlreadyExistsException();
+		}
 	}
 
 	/*
@@ -148,7 +153,7 @@ public class DiggServiceImpl implements DiggService {
 		vote.setIp(ip);
 		vote.setValue(voteValue);
 		voteDao.saveVote(vote);
-		
+
 		return vote.getStory();
 	}
 }
