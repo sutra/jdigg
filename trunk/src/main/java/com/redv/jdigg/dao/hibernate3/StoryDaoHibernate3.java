@@ -49,4 +49,18 @@ public class StoryDaoHibernate3 extends BaseDaoHibernate3<Story> implements
 		return query.list();
 	}
 
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see com.redv.jdigg.dao.StoryDao#getStoryByUrl(java.lang.String)
+	 */
+	public Story getStoryByUrl(String url) {
+		List<Story> stories = this.find("from Story where url = ?", url);
+		if (stories.isEmpty()) {
+			return null;
+		} else {
+			return stories.get(0);
+		}
+	}
+
 }

@@ -21,6 +21,9 @@
 label {
 display: block;
 }
+.pageBar {
+	margin-top: 30px;
+}
 </style>
 
 		<decorator:head />

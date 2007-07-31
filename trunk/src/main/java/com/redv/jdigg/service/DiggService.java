@@ -5,6 +5,7 @@ package com.redv.jdigg.service;
 
 import java.util.List;
 
+import com.redv.jdigg.StoryAlreadyExistsException;
 import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.domain.User;
 import com.redv.jdigg.domain.Vote;
@@ -18,7 +19,7 @@ public interface DiggService {
 
 	List<Story> getRankingStories(int firstResult, int maxResults);
 
-	void saveStory(Story story);
+	void saveStory(Story story) throws StoryAlreadyExistsException;
 
 	User getUser(String id);
 

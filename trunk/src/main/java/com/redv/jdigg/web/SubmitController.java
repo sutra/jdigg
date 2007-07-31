@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.validation.BindException;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import com.redv.jdigg.Constants;
+import com.redv.jdigg.StoryAlreadyExistsException;
 import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.domain.User;
 import com.redv.jdigg.service.DiggService;
@@ -48,13 +51,21 @@ public class SubmitController extends SimpleFormController {
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see org.springframework.web.servlet.mvc.SimpleFormController#doSubmitAction(java.lang.Object)
+	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(java.lang.Object,
+	 *      org.springframework.validation.BindException)
 	 */
 	@Override
-	protected void doSubmitAction(Object command) throws Exception {
+	protected ModelAndView onSubmit(Object command, BindException errors)
+			throws Exception {
 		Story story = (Story) command;
 		log.debug("story.digger: " + story.getDigger().getOpenid());
-		diggService.saveStory(story);
+		try {
+			diggService.saveStory(story);
+		} catch (StoryAlreadyExistsException ex) {
+			errors.rejectValue("url", "StoryAlreadyExistsException",
+					"StoryAlreadyExistsException");
+		}
+		return super.onSubmit(command, errors);
 	}
 
 }

@@ -46,3 +46,8 @@ else {
 
 </div>
 </c:forEach>
+
+<div class="pageBar">
+<a href="?firstResult=${firstResult - maxResults}&maxResults=${maxResults}">Previous</a>
+<a href="?firstResult=${firstResult + maxResults}&maxResults=${maxResults}">Next</a>
+</div>

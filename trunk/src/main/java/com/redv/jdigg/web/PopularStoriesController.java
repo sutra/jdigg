@@ -3,6 +3,9 @@
  */
 package com.redv.jdigg.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,8 +42,11 @@ public class PopularStoriesController implements Controller {
 				request.getParameter("firstResult"), 0);
 		int maxResults = NumberUtils.toInt(request.getParameter("maxResults"),
 				15);
-		return new ModelAndView("popular-stories", "stories", diggService
-				.getRankingStories(firstResult, maxResults));
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("firstResult", firstResult);
+		model.put("maxResults", maxResults);
+		model.put("stories", diggService.getRankingStories(firstResult,
+				maxResults));
+		return new ModelAndView("popular-stories", model);
 	}
-
 }
