@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.redv.jdigg.StoryAlreadyExistsException;
+import com.redv.jdigg.StoryNotFoundException;
+import com.redv.jdigg.UserNotFoundException;
 import com.redv.jdigg.dao.StoryDao;
 import com.redv.jdigg.dao.UserDao;
 import com.redv.jdigg.dao.VoteDao;
@@ -122,7 +124,8 @@ public class DiggServiceImpl implements DiggService {
 	 * @see com.redv.jdigg.service.DiggService#digg(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
-	public Story digg(String storyId, String userId, String ip) {
+	public Story digg(String storyId, String userId, String ip)
+			throws StoryNotFoundException, UserNotFoundException {
 		return vote(storyId, userId, ip, (short) 1);
 	}
 
@@ -132,16 +135,26 @@ public class DiggServiceImpl implements DiggService {
 	 * @see com.redv.jdigg.service.DiggService#bury(java.lang.String,
 	 *      java.lang.String, java.lang.String)
 	 */
-	public Story bury(String storyId, String userId, String ip) {
+	public Story bury(String storyId, String userId, String ip)
+			throws StoryNotFoundException, UserNotFoundException {
 		return vote(storyId, userId, ip, (short) -1);
 	}
 
-	private Story vote(String storyId, String userId, String ip, short voteValue) {
+	private Story vote(String storyId, String userId, String ip, short voteValue)
+			throws StoryNotFoundException, UserNotFoundException {
 		Vote vote = voteDao.getVote(storyId, userId);
 		if (vote == null) {
 			vote = new Vote();
-			vote.setStory(storyDao.getStory(storyId));
-			vote.setVoter(userDao.getUser(userId));
+			Story story = storyDao.getStory(storyId);
+			if (story == null) {
+				throw new StoryNotFoundException();
+			}
+			User user = userDao.getUser(userId);
+			if (user == null) {
+				throw new UserNotFoundException();
+			}
+			vote.setStory(story);
+			vote.setVoter(user);
 		}
 		long rank = vote.getStory().getRank();
 		rank -= vote.getValue();
