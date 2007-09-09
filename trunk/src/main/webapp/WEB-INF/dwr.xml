@@ -8,7 +8,7 @@
 			<param name="class" value="com.redv.jdigg.web.dwr.User" />
 		</create>
 		<convert converter="bean" match="com.redv.jdigg.domain.Story">
-			<param name="exclude" value="digger, body, date, title, url" />
+			<param name="include" value="id, rank" />
 		</convert>
 	</allow>
 </dwr>
