@@ -7,6 +7,8 @@
 		<create creator="new" javascript="User">
 			<param name="class" value="com.redv.jdigg.web.dwr.User" />
 		</create>
-		<convert converter="bean" match="com.redv.jdigg.domain.*" />
+		<convert converter="bean" match="com.redv.jdigg.domain.Story">
+			<param name="exclude" value="digger, body, date, title, url" />
+		</convert>
 	</allow>
 </dwr>

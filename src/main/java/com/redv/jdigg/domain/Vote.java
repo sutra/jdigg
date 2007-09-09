@@ -6,6 +6,9 @@ package com.redv.jdigg.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * @author <a href="mailto:zhoushuqun@gmail.com">Sutra Zhou</a>
  * 
@@ -99,6 +102,35 @@ public class Vote implements Serializable {
 	 */
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder(17, 37).append(this.story)
+				.append(this.voter).toHashCode();
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Vote == false) {
+			return false;
+		}
+		if (this == obj) {
+			return true;
+		}
+		Vote rhs = (Vote) obj;
+		return new EqualsBuilder().append(story, rhs.story).append(voter,
+				rhs.voter).isEquals();
 	}
 
 }

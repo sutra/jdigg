@@ -6,6 +6,9 @@ package com.redv.jdigg.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 /**
  * @author <a href="mailto:zhoushuqun@gmail.com">Sutra Zhou</a>
  * 
@@ -133,6 +136,33 @@ public class Story implements Serializable {
 	 */
 	public void setRank(long rank) {
 		this.rank = rank;
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder(17, 37).append(this.id).toHashCode();
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Story == false) {
+			return false;
+		}
+		if (this == obj) {
+			return true;
+		}
+		Story rhs = (Story) obj;
+		return new EqualsBuilder().append(id, rhs.id).isEquals();
 	}
 
 }
