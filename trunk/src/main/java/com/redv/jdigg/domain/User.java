@@ -44,6 +44,13 @@ public class User implements Serializable {
 	private String timezone;
 
 	/**
+	 * 
+	 */
+	public User() {
+		joinDate = new Date();
+	}
+
+	/**
 	 * @return the joinDate
 	 */
 	public Date getJoinDate() {

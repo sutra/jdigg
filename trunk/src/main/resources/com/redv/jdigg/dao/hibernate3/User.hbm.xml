@@ -2,21 +2,25 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.redv.jdigg.domain">
-	<class name="User" table="user">
-		<id name="id" type="java.lang.String" length="32">
+	<class name="User" table="jdigg_user">
+		<id name="id" column="user_id" type="java.lang.String"
+			length="32">
 			<generator class="uuid" />
 		</id>
-		<property name="openid" unique="true" not-null="true" index="openid" />
-		<property name="joinDate" type="timestamp" update="false" />
+		<property name="openid" column="user_openid" unique="true"
+			not-null="true" index="openid" />
+		<property name="joinDate" column="user_join_date"
+			type="timestamp" update="false" />
 
-		<property name="nickname" length="255" />
-		<property name="email" length="255" />
-		<property name="fullname" length="255" />
-		<property name="dob" type="date" />
-		<property name="gender" type="java.lang.String" length="1" />
-		<property name="postcode" />
-		<property name="country" />
-		<property name="language" />
-		<property name="timezone" />
+		<property name="nickname" column="user_nickname" length="255" />
+		<property name="email" column="user_email" length="255" />
+		<property name="fullname" column="user_fullname" length="255" />
+		<property name="dob" column="user_dob" type="date" />
+		<property name="gender" column="user_gender"
+			type="java.lang.String" length="1" />
+		<property name="postcode" column="user_postcode" />
+		<property name="country" column="user_country" />
+		<property name="language" column="user_language" />
+		<property name="timezone" column="user_timezone" />
 	</class>
 </hibernate-mapping>

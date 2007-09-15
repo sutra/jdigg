@@ -34,6 +34,14 @@ public class Story implements Serializable {
 	private long rank;
 
 	/**
+	 * 
+	 */
+	public Story() {
+		digger = new User();
+		date = new Date();
+	}
+
+	/**
 	 * @return the id
 	 */
 	public String getId() {
