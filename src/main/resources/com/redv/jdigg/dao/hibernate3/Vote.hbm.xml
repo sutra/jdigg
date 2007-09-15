@@ -2,13 +2,13 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.redv.jdigg.domain">
-	<class name="Vote" table="vote">
+	<class name="Vote" table="jdigg_vote">
 		<composite-id>
-			<key-many-to-one name="story" />
-			<key-many-to-one name="voter" />
+			<key-many-to-one name="story" column="vote_story" />
+			<key-many-to-one name="voter" column="vote_voter" />
 		</composite-id>
-		<property name="date" type="timestamp" />
-		<property name="value" />
-		<property name="ip" length="15" />
+		<property name="date" column="vote_date" type="timestamp" />
+		<property name="value" column="vote_value" />
+		<property name="ip" column="vote_ip" length="15" />
 	</class>
 </hibernate-mapping>

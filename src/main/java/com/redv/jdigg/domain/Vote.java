@@ -30,6 +30,15 @@ public class Vote implements Serializable {
 	private String ip;
 
 	/**
+	 * 
+	 */
+	public Vote() {
+		story = new Story();
+		voter = new User();
+		date = new Date();
+	}
+
+	/**
 	 * @return the date
 	 */
 	public Date getDate() {
