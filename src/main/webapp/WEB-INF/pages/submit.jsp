@@ -4,7 +4,7 @@
 </head>
 <body>
 <form:form>
-<fieldset>
+<fieldset class="Submit_a_New_Story">
 <legend><fmt:message key="Submit_a_New_Story" /></legend>
 	<label for="url" accesskey="1">Enter the URL of the Story</label>
 	<form:input path="url" cssClass="story_url" />

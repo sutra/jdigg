@@ -65,13 +65,13 @@ public class Consumer {
 			// attach the extension to the authentication request
 			authReq.addExtension(fetch);
 
-			if (!discovered.isVersion2()) {
+			// if (!discovered.isVersion2()) {
 				// Option 1: GET HTTP-redirect to the OpenID Provider endpoint
 				// The only method supported in OpenID 1.x
 				// redirect-URL usually limited ~2048 bytes
 				httpResp.sendRedirect(authReq.getDestinationUrl(true));
 				return null;
-			} else {
+			// } else {
 				// Option 2: HTML FORM Redirection (Allows payloads >2048 bytes)
 
 				// RequestDispatcher dispatcher =
@@ -81,7 +81,7 @@ public class Consumer {
 				// httpReq.setAttribute("destinationUrl",
 				// response.getDestinationUrl(false));
 				// dispatcher.forward(request, response);
-			}
+			// }
 		} catch (OpenIDException e) {
 			// present error to the user
 			httpResp.getWriter().write("Error: " + e.getMessage());
