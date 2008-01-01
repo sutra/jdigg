@@ -76,7 +76,7 @@
 				/logout.html=logoutController
 				/search.html=searchController
 				/index.html=indexController
-				/popular-stories.html=popularStoriesController
+				/top-votes.html=popularStoriesController
 			</value>
 		</property>
 		<property name="interceptors">

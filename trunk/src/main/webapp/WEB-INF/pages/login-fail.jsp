@@ -1,1 +1,1 @@
-Login fail.
+<jsp:include flush="true" page="login-form.jsp"></jsp:include>

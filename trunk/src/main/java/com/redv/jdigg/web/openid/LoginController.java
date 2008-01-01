@@ -58,8 +58,10 @@ public class LoginController implements Controller {
 			HttpServletResponse response) throws Exception {
 		if (StringUtils.equalsIgnoreCase("post", request.getMethod())) {
 			log.debug("A http post start.");
-			this.consumer.authRequest(request.getParameter("openid_url"),
-					request, response);
+			this.consumer.authRequest(
+					request.getParameter("openid_url") == null ? request
+							.getParameter("openid_identifier") : request
+							.getParameter("openid_url"), request, response);
 			return null;
 		} else {
 			log.debug("A http get start.");
