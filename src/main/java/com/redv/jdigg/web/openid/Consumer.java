@@ -55,12 +55,12 @@ public class Consumer {
 			// provider
 			AuthRequest authReq = manager.authenticate(discovered, returnToUrl);
 
-			// Attribute Exchange example: fetching the 'email' attribute
+			// Attribute Exchange: fetching the 'nickname' attribute
 			FetchRequest fetch = FetchRequest.createFetchRequest();
-			fetch.addAttribute("email",
+			fetch.addAttribute("nickname",
 			// attribute alias
-					"http://schema.openid.net/contact/email", // type URI
-					true); // required
+					"http://schema.openid.net/contact/nickname", // type URI
+					false); // required
 
 			// attach the extension to the authentication request
 			authReq.addExtension(fetch);

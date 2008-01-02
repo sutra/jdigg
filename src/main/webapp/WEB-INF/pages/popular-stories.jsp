@@ -49,13 +49,13 @@ if (window.addEventListener) {
 </p>
 
 <span id="diggs_${story.id}">${story.votes}</span> diggs
-
+|
 <a href="javascript:User.digg('${story.id}', {callback:reply0,errorHandler:errorHandler})">Digg</a>
+|
+<a href="javascript:User.bury('${story.id}', reply0)">Bury</a>
+|
 <a href="<c:url value="/users/${story.digger.id}" />"><c:out value="${story.digger.nickname}" escapeXml="true" /></a>
  submitted.
-
-<a href="javascript:User.bury('${story.id}', reply0)">Bury</a>
-
 </div>
 </c:forEach>
 

@@ -8,7 +8,7 @@
 			<param name="class" value="com.redv.jdigg.web.dwr.User" />
 		</create>
 		<convert converter="bean" match="com.redv.jdigg.domain.Story">
-			<param name="include" value="id, rank" />
+			<param name="include" value="id, votes" />
 		</convert>
 
 		<convert converter="exception" match="java.lang.Exception">
