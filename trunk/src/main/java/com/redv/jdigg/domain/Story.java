@@ -31,6 +31,10 @@ public class Story implements Serializable {
 
 	private Date date;
 
+	private long votes;
+
+	private long hits;
+
 	private long rank;
 
 	/**
@@ -129,6 +133,36 @@ public class Story implements Serializable {
 	 */
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	/**
+	 * @return votes
+	 */
+	public long getVotes() {
+		return votes;
+	}
+
+	/**
+	 * @param votes
+	 *            要设置的 votes
+	 */
+	public void setVotes(long votes) {
+		this.votes = votes;
+	}
+
+	/**
+	 * @return hits
+	 */
+	public long getHits() {
+		return hits;
+	}
+
+	/**
+	 * @param hits
+	 *            要设置的 hits
+	 */
+	public void setHits(long hits) {
+		this.hits = hits;
 	}
 
 	/**

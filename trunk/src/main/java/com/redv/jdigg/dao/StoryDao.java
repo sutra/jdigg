@@ -16,6 +16,12 @@ public interface StoryDao {
 
 	Story getStoryByUrl(String url);
 
+	List<Story> getLastSubmissionsStories(int firstResult, int maxResults);
+
+	List<Story> getVotingStories(int firstResult, int maxResults);
+
+	List<Story> getHitingStories(int firstResult, int maxResults);
+
 	List<Story> getRankingStories(int firstResult, int maxResults);
 
 	void saveStory(Story story);

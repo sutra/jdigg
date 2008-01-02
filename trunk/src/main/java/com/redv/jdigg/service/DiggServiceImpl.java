@@ -63,6 +63,33 @@ public class DiggServiceImpl implements DiggService {
 	/*
 	 * （非 Javadoc）
 	 * 
+	 * @see com.redv.jdigg.service.DiggService#getLastSubmissionsStories(int, int)
+	 */
+	public List<Story> getLastSubmissionsStories(int firstResult, int maxResults) {
+		return storyDao.getLastSubmissionsStories(firstResult, maxResults);
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see com.redv.jdigg.service.DiggService#getVotingStories(int, int)
+	 */
+	public List<Story> getVotingStories(int firstResult, int maxResults) {
+		return storyDao.getVotingStories(firstResult, maxResults);
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see com.redv.jdigg.service.DiggService#getHitingStories(int, int)
+	 */
+	public List<Story> getHitingStories(int firstResult, int maxResults) {
+		return storyDao.getHitingStories(firstResult, maxResults);
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
 	 * @see com.redv.jdigg.service.DiggService#getRankingStories(int, int)
 	 */
 	public List<Story> getRankingStories(int firstResult, int maxResults) {
@@ -156,10 +183,10 @@ public class DiggServiceImpl implements DiggService {
 			vote.setStory(story);
 			vote.setVoter(user);
 		}
-		long rank = vote.getStory().getRank();
-		rank -= vote.getValue();
-		rank += voteValue;
-		vote.getStory().setRank(rank);
+		long votes = vote.getStory().getVotes();
+		votes -= vote.getValue();
+		votes += voteValue;
+		vote.getStory().setVotes(votes);
 		storyDao.saveStory(vote.getStory());
 
 		vote.setDate(new Date());

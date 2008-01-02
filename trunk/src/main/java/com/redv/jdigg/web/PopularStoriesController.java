@@ -4,6 +4,7 @@
 package com.redv.jdigg.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,14 +14,17 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.service.DiggService;
 
 /**
  * @author <a href="mailto:zhoushuqun@gmail.com">Sutra Zhou</a>
  * 
  */
-public class PopularStoriesController implements Controller {
-	private DiggService diggService;
+public abstract class PopularStoriesController implements Controller {
+	protected DiggService diggService;
+
+	protected String view;
 
 	/**
 	 * @param diggService
@@ -28,6 +32,14 @@ public class PopularStoriesController implements Controller {
 	 */
 	public void setDiggService(DiggService diggService) {
 		this.diggService = diggService;
+	}
+
+	/**
+	 * @param view
+	 *            要设置的 view
+	 */
+	public void setView(String view) {
+		this.view = view;
 	}
 
 	/*
@@ -45,8 +57,13 @@ public class PopularStoriesController implements Controller {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("firstResult", firstResult);
 		model.put("maxResults", maxResults);
-		model.put("stories", diggService.getRankingStories(firstResult,
-				maxResults));
-		return new ModelAndView("popular-stories", model);
+		model.put("stories", this.getStories(firstResult, maxResults));
+		return new ModelAndView(this.getView(), model);
 	}
+
+	protected String getView() {
+		return view;
+	}
+
+	protected abstract List<Story> getStories(int firstResult, int maxResults);
 }
