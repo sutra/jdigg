@@ -11,7 +11,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openid4java.consumer.ConsumerException;
 import org.openid4java.consumer.ConsumerManager;
-import org.openid4java.discovery.Identifier;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
@@ -65,18 +64,19 @@ public class LoginController implements Controller {
 			return null;
 		} else {
 			log.debug("A http get start.");
-			Identifier id = this.consumer.verifyResponse(request);
+			User verifiedUser = this.consumer.verifyResponse(request);
 			String redirectUrl = (String) request.getSession().getAttribute(
 					Constants.ORIGINAL_URL);
 			log.debug("redirectUrl: " + redirectUrl);
 
-			if (id != null && StringUtils.isNotEmpty(id.getIdentifier())) {
-				User user = diggService.getUserByOpenid(id.getIdentifier());
+			if (verifiedUser != null
+					&& StringUtils.isNotEmpty(verifiedUser.getOpenid())) {
+				User user = diggService.getUserByOpenid(verifiedUser
+						.getOpenid());
 				// If user is not in our system, add it.
 				if (user == null) {
 					log.debug("User is not in our system, add it.");
-					user = new User();
-					user.setOpenid(id.getIdentifier());
+					user = verifiedUser;
 					diggService.saveUser(user);
 				}
 				request.getSession().setAttribute(Constants.CURRENT_USER, user);

@@ -19,6 +19,9 @@ import org.openid4java.message.AuthSuccess;
 import org.openid4java.message.ParameterList;
 import org.openid4java.message.ax.AxMessage;
 import org.openid4java.message.ax.FetchRequest;
+import org.openid4java.message.ax.FetchResponse;
+
+import com.redv.jdigg.domain.User;
 
 /**
  * @author Sutra Zhou
@@ -66,21 +69,21 @@ public class Consumer {
 			authReq.addExtension(fetch);
 
 			// if (!discovered.isVersion2()) {
-				// Option 1: GET HTTP-redirect to the OpenID Provider endpoint
-				// The only method supported in OpenID 1.x
-				// redirect-URL usually limited ~2048 bytes
-				httpResp.sendRedirect(authReq.getDestinationUrl(true));
-				return null;
+			// Option 1: GET HTTP-redirect to the OpenID Provider endpoint
+			// The only method supported in OpenID 1.x
+			// redirect-URL usually limited ~2048 bytes
+			httpResp.sendRedirect(authReq.getDestinationUrl(true));
+			return null;
 			// } else {
-				// Option 2: HTML FORM Redirection (Allows payloads >2048 bytes)
+			// Option 2: HTML FORM Redirection (Allows payloads >2048 bytes)
 
-				// RequestDispatcher dispatcher =
-				// getServletContext().getRequestDispatcher("formredirection.jsp");
-				// httpReq.setAttribute("prameterMap",
-				// response.getParameterMap());
-				// httpReq.setAttribute("destinationUrl",
-				// response.getDestinationUrl(false));
-				// dispatcher.forward(request, response);
+			// RequestDispatcher dispatcher =
+			// getServletContext().getRequestDispatcher("formredirection.jsp");
+			// httpReq.setAttribute("prameterMap",
+			// response.getParameterMap());
+			// httpReq.setAttribute("destinationUrl",
+			// response.getDestinationUrl(false));
+			// dispatcher.forward(request, response);
 			// }
 		} catch (OpenIDException e) {
 			// present error to the user
@@ -91,7 +94,7 @@ public class Consumer {
 	}
 
 	// --- processing the authentication response ---
-	public Identifier verifyResponse(HttpServletRequest httpReq) {
+	public User verifyResponse(HttpServletRequest httpReq) {
 		try {
 			// extract the parameters from the authentication response
 			// (which comes in as a HTTP request from the OpenID provider)
@@ -117,18 +120,21 @@ public class Consumer {
 			// identifier
 			Identifier verified = verification.getVerifiedId();
 			if (verified != null) {
+				User user = new User();
+				user.setOpenid(verified.getIdentifier());
 				AuthSuccess authSuccess = (AuthSuccess) verification
 						.getAuthResponse();
 
 				if (authSuccess.hasExtension(AxMessage.OPENID_NS_AX)) {
-					// FetchResponse fetchResp = (FetchResponse) authSuccess
-					// .getExtension(AxMessage.OPENID_NS_AX);
+					FetchResponse fetchResp = (FetchResponse) authSuccess
+							.getExtension(AxMessage.OPENID_NS_AX);
 
-					// List emails = fetchResp.getAttributeValues("email");
-					// String email = (String) emails.get(0);
+					List nicknames = fetchResp.getAttributeValues("nickname");
+					String nickname = (String) nicknames.get(0);
+					user.setNickname(nickname);
 				}
 
-				return verified; // success
+				return user; // success
 			}
 		} catch (OpenIDException e) {
 			// present error to the user
