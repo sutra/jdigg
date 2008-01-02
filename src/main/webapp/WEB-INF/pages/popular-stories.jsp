@@ -27,7 +27,7 @@ if (window.addEventListener) {
 </script>
 <script type="text/javascript">
 	var reply0 = function(data) {
-		if (data != null && typeof data == 'object') dwr.util.setValue('diggs_' + data.id, data.rank);
+		if (data != null && typeof data == 'object') dwr.util.setValue('diggs_' + data.id, data.votes);
 	}
 </script>
 <c:forEach items="${stories}" var="story">
@@ -48,7 +48,7 @@ if (window.addEventListener) {
  -->
 </p>
 
-<span id="diggs_${story.id}">${story.rank}</span> diggs
+<span id="diggs_${story.id}">${story.votes}</span> diggs
 
 <a href="javascript:User.digg('${story.id}', {callback:reply0,errorHandler:errorHandler})">Digg</a>
 <a href="<c:url value="/users/${story.digger.id}" />"><c:out value="${story.digger.nickname}" escapeXml="true" /></a>

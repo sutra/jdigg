@@ -19,6 +19,40 @@ import com.redv.jdigg.domain.Vote;
 public interface DiggService {
 	Story getStory(String id);
 
+	/**
+	 * Get the last submissions stories.
+	 * 
+	 * @param firstResult
+	 * @param maxResults
+	 * @return
+	 */
+	List<Story> getLastSubmissionsStories(int firstResult, int maxResults);
+
+	/**
+	 * Get the top hits stories.
+	 * 
+	 * @param firstResult
+	 * @param maxResults
+	 * @return
+	 */
+	List<Story> getHitingStories(int firstResult, int maxResults);
+
+	/**
+	 * Get the top votes stories.
+	 * 
+	 * @param firstResult
+	 * @param maxResults
+	 * @return
+	 */
+	List<Story> getVotingStories(int firstResult, int maxResults);
+
+	/**
+	 * Get the top rank stories.
+	 * 
+	 * @param firstResult
+	 * @param maxResults
+	 * @return
+	 */
 	List<Story> getRankingStories(int firstResult, int maxResults);
 
 	void saveStory(Story story) throws StoryAlreadyExistsException;
