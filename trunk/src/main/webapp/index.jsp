@@ -1,1 +1,1 @@
-<jsp:forward page="/popular-stories.html" />
+<jsp:forward page="/top-votes.html" />
