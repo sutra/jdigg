@@ -11,6 +11,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openid4java.consumer.ConsumerException;
 import org.openid4java.consumer.ConsumerManager;
+import org.openid4java.consumer.InMemoryConsumerAssociationStore;
+import org.openid4java.consumer.InMemoryNonceVerifier;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
@@ -36,6 +38,8 @@ public class LoginController implements Controller {
 		} catch (ConsumerException e) {
 			throw new RuntimeException(e);
 		}
+		manager.setAssociations(new InMemoryConsumerAssociationStore());
+		manager.setNonceVerifier(new InMemoryNonceVerifier(5000));
 		consumer = new Consumer(manager);
 	}
 
