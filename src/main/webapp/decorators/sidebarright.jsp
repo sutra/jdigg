@@ -12,9 +12,10 @@
 <fieldset>
 <legend><img alt="" src="${ctx}/themes/fresh/images/login-bg.gif" /></legend>
 logged in as<br />
-<c:out value="${currentUser.openid}" />
+<c:out value="${currentUser.openid}" /><br />
 <a href="<c:url value="/profile.html" />">&gt;&gt; Member Area</a><br />
 <a href="<c:url value="/logout.html" />">&gt;&gt; <fmt:message key="Logout" /></a>
+</fieldset>
 </c:otherwise>
 </c:choose>
 </div>
