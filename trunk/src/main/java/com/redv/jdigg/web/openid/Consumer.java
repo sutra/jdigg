@@ -16,10 +16,11 @@ import org.openid4java.discovery.DiscoveryInformation;
 import org.openid4java.discovery.Identifier;
 import org.openid4java.message.AuthRequest;
 import org.openid4java.message.AuthSuccess;
+import org.openid4java.message.MessageExtension;
 import org.openid4java.message.ParameterList;
-import org.openid4java.message.ax.AxMessage;
-import org.openid4java.message.ax.FetchRequest;
-import org.openid4java.message.ax.FetchResponse;
+import org.openid4java.message.sreg.SRegMessage;
+import org.openid4java.message.sreg.SRegRequest;
+import org.openid4java.message.sreg.SRegResponse;
 
 import com.redv.jdigg.domain.User;
 
@@ -58,15 +59,12 @@ public class Consumer {
 			// provider
 			AuthRequest authReq = manager.authenticate(discovered, returnToUrl);
 
-			// Attribute Exchange: fetching the 'nickname' attribute
-			FetchRequest fetch = FetchRequest.createFetchRequest();
-			fetch.addAttribute("nickname",
-			// attribute alias
-					"http://schema.openid.net/contact/nickname", // type URI
-					false); // required
+			// Simple Registration extenstion: fetching the 'nickname' attribute
+			SRegRequest sregReq = SRegRequest.createFetchRequest();
+			sregReq.addAttribute("nickname", true);
 
 			// attach the extension to the authentication request
-			authReq.addExtension(fetch);
+			authReq.addExtension(sregReq);
 
 			// if (!discovered.isVersion2()) {
 			// Option 1: GET HTTP-redirect to the OpenID Provider endpoint
@@ -124,14 +122,15 @@ public class Consumer {
 				user.setOpenid(verified.getIdentifier());
 				AuthSuccess authSuccess = (AuthSuccess) verification
 						.getAuthResponse();
-
-				if (authSuccess.hasExtension(AxMessage.OPENID_NS_AX)) {
-					FetchResponse fetchResp = (FetchResponse) authSuccess
-							.getExtension(AxMessage.OPENID_NS_AX);
-
-					List nicknames = fetchResp.getAttributeValues("nickname");
-					String nickname = (String) nicknames.get(0);
-					user.setNickname(nickname);
+				if (authSuccess.hasExtension(SRegMessage.OPENID_NS_SREG)) {
+					MessageExtension ext = authSuccess
+							.getExtension(SRegMessage.OPENID_NS_SREG);
+					if (ext instanceof SRegResponse) {
+						SRegResponse sregResp = (SRegResponse) ext;
+						String nickname = sregResp
+								.getAttributeValue("nickname");
+						user.setNickname(nickname);
+					}
 				}
 
 				return user; // success
