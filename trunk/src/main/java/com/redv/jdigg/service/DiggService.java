@@ -70,4 +70,6 @@ public interface DiggService {
 
 	Story bury(String storyId, String userId, String ip)
 			throws StoryNotFoundException, UserNotFoundException;
+
+	void hit(String storyId) throws StoryNotFoundException;
 }

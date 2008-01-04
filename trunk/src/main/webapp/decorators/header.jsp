@@ -7,7 +7,9 @@
 <li><a href="<c:url value="/top-votes.html" />" title="Top Votes"><fmt:message key="menu.Top_Votes" /></a></li>
 <li><a href="<c:url value="/top-hits.html" />" title="Top 10 Hits"><fmt:message key="menu.Top_Hits" /></a></li>
 <li><a href="<c:url value="/top-rank.html" />" title="Top Rank"><fmt:message key="menu.Top_Rank" /></a></li>
+<%--
 <li><a href="<c:url value="/keywords.html" />" title="Keywords"><fmt:message key="menu.Keywords" /></a></li>
 <li><a href="<c:url value="/allcats.html" />" title="Categories"><fmt:message key="menu.Categories" /></a></li>
+--%>
 <li><a href="<c:url value="/submit.html" />" title="Submit a site"><fmt:message key="menu.Submit_a_site" /></a></li>
 </ul>
