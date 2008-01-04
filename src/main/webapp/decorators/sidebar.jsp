@@ -1,14 +1,15 @@
 <%@include file="/taglibs.jsp" %>
-<h2>Promotionbox</h2>
+<%@page contentType="text/html; charset=UTF-8" %>
+<h2>广告箱</h2>
 <div class="promotable" style="text-align: center;">
-	<a onmousedown="return clk('524');" href="http://www.laudr.com" title="Laudr | Underground Music" class="_blank" style="font-size: 10px;">Laudr | Underground Music</a>
+	<a onmousedown="return clk('524');" href="http://www.mybrand.com.cn" title="我的品牌" class="_blank" style="font-size: 10px;">独立博客</a>
 	<div style="text-align: center;">
-		<a onmousedown="return clk('524');" href="http://www.laudr.com" title="Laudr | Underground Music" class="_blank">
-			<img src="${logo}" alt="${alt}" width="120" height="90" class="sitetd" />
+		<a onmousedown="return clk('524');" href="http://www.mybrand.com.cn" title="我的品牌" class="_blank">
+			<img src="http://www.mybrand.com.cn/images/logo.gif" alt="独立博客" width="120" height="90" class="sitetd" />
 		</a>
 	</div>
 </div>
-
+<%--
 <div style="text-align: center;"><a href="boost.html" title="Promotionbox">Your website here</a></div>
 
 <h2>Information</h2>
@@ -36,3 +37,4 @@
 		<a href=""><b>&raquo;</b>Blogs</a>
 	</li>
 </ul>
+--%>

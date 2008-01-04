@@ -14,6 +14,7 @@
 				<prop key="save*">PROPAGATION_REQUIRED</prop>
 				<prop key="digg">PROPAGATION_REQUIRED</prop>
 				<prop key="bury">PROPAGATION_REQUIRED</prop>
+				<prop key="hit">PROPAGATION_REQUIRED</prop>
 			</props>
 		</property>
 	</bean>

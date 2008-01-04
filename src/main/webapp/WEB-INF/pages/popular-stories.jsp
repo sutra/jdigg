@@ -34,7 +34,7 @@ if (window.addEventListener) {
 <div>
 
 <h3>
-<a href="<c:out value="${story.url}" escapeXml="true" />">
+<a href="<c:out value="${story.url}" escapeXml="true" />" onclick="Digg.hit('${story.id}')">
 <c:out value="${story.title}" escapeXml="true" />
 </a>
 </h3>
@@ -48,13 +48,23 @@ if (window.addEventListener) {
  -->
 </p>
 
-<span id="diggs_${story.id}">${story.votes}</span> diggs
+<span id="diggs_${story.id}">${story.votes}</span> diggs,
+<span>${story.hits}</span> hits
 |
 <a href="javascript:User.digg('${story.id}', {callback:reply0,errorHandler:errorHandler})">Digg</a>
 |
 <a href="javascript:User.bury('${story.id}', reply0)">Bury</a>
 |
-<a href="<c:url value="/users/${story.digger.id}" />"><c:out value="${story.digger.nickname}" escapeXml="true" /></a>
+<a href="<c:url value="/users/${story.digger.id}" />">
+	<c:choose>
+		<c:when test="${empty story.digger.nickname}">
+			<c:out value="${story.digger.openid}" escapeXml="true" />
+		</c:when>
+		<c:otherwise>
+			<c:out value="${story.digger.nickname}" escapeXml="true" />
+		</c:otherwise>
+	</c:choose>
+</a>
  submitted.
 </div>
 </c:forEach>

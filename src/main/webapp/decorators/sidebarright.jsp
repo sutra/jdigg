@@ -19,7 +19,7 @@ logged in as<br />
 </c:otherwise>
 </c:choose>
 </div>
-
+<%--
 <h2>Search</h2>
 <div id="recherche">
 <form action="recherche.html" method="post">
@@ -45,3 +45,4 @@ logged in as<br />
 <li><a href="rss">Subscribe (RSS)</a></li>
 <li><a href="atom">Subscribe (ATOM)</a></li>
 </ul>
+--%>

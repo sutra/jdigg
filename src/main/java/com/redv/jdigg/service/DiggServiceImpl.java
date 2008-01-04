@@ -63,7 +63,8 @@ public class DiggServiceImpl implements DiggService {
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see com.redv.jdigg.service.DiggService#getLastSubmissionsStories(int, int)
+	 * @see com.redv.jdigg.service.DiggService#getLastSubmissionsStories(int,
+	 *      int)
 	 */
 	public List<Story> getLastSubmissionsStories(int firstResult, int maxResults) {
 		return storyDao.getLastSubmissionsStories(firstResult, maxResults);
@@ -165,6 +166,21 @@ public class DiggServiceImpl implements DiggService {
 	public Story bury(String storyId, String userId, String ip)
 			throws StoryNotFoundException, UserNotFoundException {
 		return vote(storyId, userId, ip, (short) -1);
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see com.redv.jdigg.service.DiggService#hit(java.lang.String)
+	 */
+	public void hit(String storyId) throws StoryNotFoundException {
+		Story story = this.storyDao.getStory(storyId);
+		if (story == null) {
+			throw new StoryNotFoundException();
+		} else {
+			story.setHits(story.getHits() + 1);
+			this.storyDao.saveStory(story);
+		}
 	}
 
 	private Story vote(String storyId, String userId, String ip, short voteValue)

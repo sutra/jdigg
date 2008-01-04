@@ -3,6 +3,7 @@
  */
 package com.redv.jdigg.web.dwr;
 
+import com.redv.jdigg.StoryNotFoundException;
 import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.service.DiggService;
 
@@ -23,5 +24,9 @@ public class Digg {
 
 	public Story getStory(String id) {
 		return diggService.getStory(id);
+	}
+
+	public void hit(String storyId) throws StoryNotFoundException {
+		diggService.hit(storyId);
 	}
 }
