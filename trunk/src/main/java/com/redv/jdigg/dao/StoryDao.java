@@ -30,4 +30,6 @@ public interface StoryDao {
 			int maxResults);
 
 	void saveStory(Story story);
+
+	long getStoryCount(Category category);
 }

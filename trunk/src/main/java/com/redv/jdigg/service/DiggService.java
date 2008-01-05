@@ -134,6 +134,20 @@ public interface DiggService {
 	 */
 	void saveStory(Story story) throws StoryAlreadyExistsException;
 
+	/**
+	 * Get story count of all categories.
+	 * 
+	 * @return
+	 */
+	long getStoryCount();
+
+	/**
+	 * Get story count.
+	 * 
+	 * @return
+	 */
+	long getStoryCount(Category category);
+
 	// Vote.
 	/**
 	 * Save a note.

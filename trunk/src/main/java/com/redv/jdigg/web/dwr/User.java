@@ -18,6 +18,7 @@ import com.redv.jdigg.UserNotLoginException;
 import com.redv.jdigg.domain.Category;
 import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.service.DiggService;
+import com.redv.jdigg.web.DiggContextListener;
 
 /**
  * @author sutra
@@ -52,6 +53,8 @@ public class User {
 
 	public void saveCategory(Category category) {
 		diggService.saveCategory(category);
+		DiggContextListener.refreshCategoryStatistics(this.webContext
+				.getServletContext());
 	}
 
 	public Story digg(String storyId) throws StoryNotFoundException,
