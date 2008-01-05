@@ -39,7 +39,6 @@ public class HomepageController extends MultiActionController {
 	public ModelAndView homepage(HttpServletRequest request,
 			HttpServletResponse response) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("categories", diggService.getCategories());
 		model
 				.put("stories", diggService.getLastSubmissionsStories(null, 0,
 						10));
@@ -57,7 +56,6 @@ public class HomepageController extends MultiActionController {
 	public ModelAndView categories(HttpServletRequest request,
 			HttpServletResponse response) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("categories", diggService.getCategories());
 		return new ModelAndView("categories", model);
 	}
 }

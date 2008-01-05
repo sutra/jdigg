@@ -9,16 +9,17 @@
 		</a>
 	</div>
 </div>
-<%--
+
 <div style="text-align: center;"><a href="boost.html" title="Promotionbox">Your website here</a></div>
 
 <h2>Information</h2>
 <p class="news">
-402 websites
+${applicationScope.websiteCount} websites
 <br />
-35 Categories<br />
+${applicationScope.categoryCount} Categories<br />
 </p>
 
+<%--
 <h2>New Comments&nbsp;<a href="rsscomments.php"><img border="0" style="vertical-align:bottom" src="http://openiddirectory.com/themes/fresh/images/live-bookmark.gif"></a></h2>
 <ul class="subnav">
 	<li>

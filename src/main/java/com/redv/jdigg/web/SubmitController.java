@@ -61,9 +61,6 @@ public class SubmitController extends SimpleFormController {
 		Story story = (Story) super.formBackingObject(request);
 		story.setDigger((User) request.getSession().getAttribute(
 				Constants.CURRENT_USER));
-
-		request.setAttribute("categories", this.diggService.getCategories());
-
 		return story;
 	}
 
@@ -97,6 +94,8 @@ public class SubmitController extends SimpleFormController {
 		log.debug("story.digger: " + story.getDigger().getOpenid());
 		try {
 			diggService.saveStory(story);
+			DiggContextListener
+					.refreshStoryStatistics(this.getServletContext());
 		} catch (StoryAlreadyExistsException ex) {
 			errors.rejectValue("url", "StoryAlreadyExistsException",
 					"This story already exists.");

@@ -144,4 +144,20 @@ public class StoryDaoHibernate3 extends BaseDaoHibernate3<Story> implements
 		}
 	}
 
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see com.redv.jdigg.dao.StoryDao#getStoryCount(com.redv.jdigg.domain.Category)
+	 */
+	public long getStoryCount(Category category) {
+		Query query = null;
+		if (category == null) {
+			query = this.getSession().createQuery("select count(*) from Story");
+		} else {
+			this.getSession().createQuery(
+					"select count(*) from Story where category = :category");
+			query.setString("category", category.getId());
+		}
+		return (Long) query.list().get(0);
+	}
 }

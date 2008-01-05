@@ -156,6 +156,24 @@ public class DiggServiceImpl implements DiggService {
 	/*
 	 * （非 Javadoc）
 	 * 
+	 * @see com.redv.jdigg.service.DiggService#getStoryCount()
+	 */
+	public long getStoryCount() {
+		return storyDao.getStoryCount(null);
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see com.redv.jdigg.service.DiggService#getStoryCount(com.redv.jdigg.domain.Category)
+	 */
+	public long getStoryCount(Category category) {
+		return storyDao.getStoryCount(category);
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
 	 * @see com.redv.jdigg.service.DiggService#getUser(java.lang.String)
 	 */
 	public User getUser(String id) {
