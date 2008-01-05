@@ -23,6 +23,7 @@
 		<property name="target">
 			<bean class="com.redv.jdigg.service.DiggServiceImpl">
 				<property name="userDao" ref="userDao" />
+				<property name="categoryDao" ref="categoryDao" />
 				<property name="storyDao" ref="storyDao" />
 				<property name="voteDao" ref="voteDao" />
 			</bean>

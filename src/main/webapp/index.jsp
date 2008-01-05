@@ -1,1 +1,1 @@
-<jsp:forward page="/top-votes.html" />
+<jsp:forward page="/homepage.html" />

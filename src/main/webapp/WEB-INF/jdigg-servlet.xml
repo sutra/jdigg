@@ -6,10 +6,13 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-	<bean id="loginController"
-		class="com.redv.jdigg.web.openid.LoginController">
+	<bean id="baseDiggController" abstract="true">
 		<property name="diggService" ref="diggService" />
 	</bean>
+
+	<bean id="loginController"
+		class="com.redv.jdigg.web.openid.LoginController"
+		parent="baseDiggController" />
 	<bean id="logoutController"
 		class="com.redv.jdigg.web.openid.LogoutController">
 	</bean>
@@ -42,27 +45,32 @@
 		</property>
 	</bean>
 
+	<bean id="homepageController"
+		class="com.redv.jdigg.web.HomepageController"
+		parent="baseDiggController" />
+
 	<bean id="profileController"
-		class="com.redv.jdigg.web.ProfileController">
+		class="com.redv.jdigg.web.ProfileController"
+		parent="baseDiggController">
 		<property name="commandClass"
 			value="com.redv.jdigg.domain.User" />
 		<property name="formView" value="profile" />
 		<property name="successView" value="profile" />
-		<property name="diggService" ref="diggService" />
 	</bean>
 
 	<bean id="submitController"
-		class="com.redv.jdigg.web.SubmitController">
+		class="com.redv.jdigg.web.SubmitController"
+		parent="baseDiggController">
 		<property name="commandClass"
 			value="com.redv.jdigg.domain.Story" />
 		<property name="formView" value="submit" />
 		<property name="successView" value="submit" />
-		<property name="diggService" ref="diggService" />
 	</bean>
+
 	<bean id="popularStoriesController"
-		class="com.redv.jdigg.web.PopularStoriesController" abstract="true">
-		<property name="diggService" ref="diggService" />
-	</bean>
+		class="com.redv.jdigg.web.PopularStoriesController" abstract="true"
+		parent="baseDiggController" />
+
 	<bean id="lastSubmissionsController"
 		class="com.redv.jdigg.web.LastSubmissionsController"
 		parent="popularStoriesController">
@@ -101,6 +109,8 @@
 				/logout.html=logoutController
 				/search.html=searchController
 				/index.html=indexController
+				/homepage.html=homepageController
+				/categories.html=homepageController
 				/last-submissions.html=lastSubmissionsController
 				/top-votes.html=topVotesController
 				/top-hits.html=topHitsController

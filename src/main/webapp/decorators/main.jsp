@@ -15,10 +15,17 @@
 		<link href="${ctx}/themes/fresh/style.css" rel="stylesheet" type="text/css" />
 		<link href="${ctx}/greybox/gb_styles.css" rel="stylesheet" type="text/css" />
 		<link href="${ctx}/themes/jdigg.css" rel="stylesheet" type="text/css" />
-		<script src='<c:url value="/dwr/interface/Digg.js" />'></script>
-		<script src='<c:url value="/dwr/interface/User.js" />'></script>
-		<script src='<c:url value="/dwr/engine.js" />'></script>
-		<script type='text/javascript' src='<c:url value="/dwr/util.js" />'></script>
+		<script type="text/javascript" src="<c:url value="/dwr/interface/Digg.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/dwr/interface/User.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/dwr/engine.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/dwr/util.js" />"></script>
+		<script type="text/javascript" src="${ctx}/prototype.js"></script>
+		<script type="text/javascript" src="${ctx}/jquery-1.2.1.min.js"></script>
+		<script type="text/javascript">
+		<!--
+		jQuery.noConflict();
+		//-->
+		</script>
 		<decorator:head />
 	</head>
 	<body>

@@ -2,6 +2,10 @@ label {
 	display: block;
 }
 
+.error {
+	color: red;
+}
+
 .pageBar {
 	margin-top: 30px;
 }

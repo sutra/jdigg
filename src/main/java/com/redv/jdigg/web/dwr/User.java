@@ -15,6 +15,7 @@ import com.redv.jdigg.Constants;
 import com.redv.jdigg.StoryNotFoundException;
 import com.redv.jdigg.UserNotFoundException;
 import com.redv.jdigg.UserNotLoginException;
+import com.redv.jdigg.domain.Category;
 import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.service.DiggService;
 
@@ -47,6 +48,10 @@ public class User {
 		if (currentUser == null) {
 			throw new UserNotLoginException();
 		}
+	}
+
+	public void saveCategory(Category category) {
+		diggService.saveCategory(category);
 	}
 
 	public Story digg(String storyId) throws StoryNotFoundException,

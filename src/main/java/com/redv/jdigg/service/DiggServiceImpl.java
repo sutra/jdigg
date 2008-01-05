@@ -9,9 +9,11 @@ import java.util.List;
 import com.redv.jdigg.StoryAlreadyExistsException;
 import com.redv.jdigg.StoryNotFoundException;
 import com.redv.jdigg.UserNotFoundException;
+import com.redv.jdigg.dao.CategoryDao;
 import com.redv.jdigg.dao.StoryDao;
 import com.redv.jdigg.dao.UserDao;
 import com.redv.jdigg.dao.VoteDao;
+import com.redv.jdigg.domain.Category;
 import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.domain.User;
 import com.redv.jdigg.domain.Vote;
@@ -23,9 +25,19 @@ import com.redv.jdigg.domain.Vote;
 public class DiggServiceImpl implements DiggService {
 	private UserDao userDao;
 
+	private CategoryDao categoryDao;
+
 	private StoryDao storyDao;
 
 	private VoteDao voteDao;
+
+	/**
+	 * @param categoryDao
+	 *            要设置的 categoryDao
+	 */
+	public void setCategoryDao(CategoryDao categoryDao) {
+		this.categoryDao = categoryDao;
+	}
 
 	/**
 	 * @param storyDao
@@ -54,6 +66,42 @@ public class DiggServiceImpl implements DiggService {
 	/*
 	 * （非 Javadoc）
 	 * 
+	 * @see com.redv.jdigg.service.DiggService#getCategory(java.lang.String)
+	 */
+	public Category getCategory(String id) {
+		return this.categoryDao.getCategory(id);
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see com.redv.jdigg.service.DiggService#getCategoryByName(java.lang.String)
+	 */
+	public Category getCategoryByName(String name) {
+		return this.categoryDao.getCategoryByName(name);
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see com.redv.jdigg.service.DiggService#getCategories()
+	 */
+	public List<Category> getCategories() {
+		return categoryDao.getCategories();
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
+	 * @see com.redv.jdigg.service.DiggService#saveCategory(com.redv.jdigg.domain.Category)
+	 */
+	public void saveCategory(Category category) {
+		categoryDao.saveCategory(category);
+	}
+
+	/*
+	 * （非 Javadoc）
+	 * 
 	 * @see com.redv.jdigg.service.DiggService#getStory(java.lang.String)
 	 */
 	public Story getStory(String id) {
@@ -63,38 +111,46 @@ public class DiggServiceImpl implements DiggService {
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see com.redv.jdigg.service.DiggService#getLastSubmissionsStories(int,
-	 *      int)
+	 * @see com.redv.jdigg.service.DiggService#getLastSubmissionsStories(com.redv.jdigg.domain.Category,
+	 *      int, int)
 	 */
-	public List<Story> getLastSubmissionsStories(int firstResult, int maxResults) {
-		return storyDao.getLastSubmissionsStories(firstResult, maxResults);
+	public List<Story> getLastSubmissionsStories(Category category,
+			int firstResult, int maxResults) {
+		return storyDao.getLastSubmissionsStories(category, firstResult,
+				maxResults);
 	}
 
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see com.redv.jdigg.service.DiggService#getVotingStories(int, int)
+	 * @see com.redv.jdigg.service.DiggService#getVotingStories(com.redv.jdigg.domain.Category,
+	 *      int, int)
 	 */
-	public List<Story> getVotingStories(int firstResult, int maxResults) {
-		return storyDao.getVotingStories(firstResult, maxResults);
+	public List<Story> getVotingStories(Category category, int firstResult,
+			int maxResults) {
+		return storyDao.getVotingStories(category, firstResult, maxResults);
 	}
 
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see com.redv.jdigg.service.DiggService#getHitingStories(int, int)
+	 * @see com.redv.jdigg.service.DiggService#getHitingStories(com.redv.jdigg.domain.Category,
+	 *      int, int)
 	 */
-	public List<Story> getHitingStories(int firstResult, int maxResults) {
-		return storyDao.getHitingStories(firstResult, maxResults);
+	public List<Story> getHitingStories(Category category, int firstResult,
+			int maxResults) {
+		return storyDao.getHitingStories(category, firstResult, maxResults);
 	}
 
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see com.redv.jdigg.service.DiggService#getRankingStories(int, int)
+	 * @see com.redv.jdigg.service.DiggService#getRankingStories(com.redv.jdigg.domain.Category,
+	 *      int, int)
 	 */
-	public List<Story> getRankingStories(int firstResult, int maxResults) {
-		return storyDao.getRankingStories(firstResult, maxResults);
+	public List<Story> getRankingStories(Category category, int firstResult,
+			int maxResults) {
+		return storyDao.getRankingStories(category, firstResult, maxResults);
 	}
 
 	/*
