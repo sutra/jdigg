@@ -54,7 +54,7 @@ public class User implements Serializable {
 	 * @return the joinDate
 	 */
 	public Date getJoinDate() {
-		return joinDate;
+		return this.joinDate == null ? null : (Date) this.joinDate.clone();
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class User implements Serializable {
 	 *            the joinDate to set
 	 */
 	public void setJoinDate(Date joinDate) {
-		this.joinDate = joinDate;
+		this.joinDate = joinDate == null ? null : (Date) joinDate.clone();
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class User implements Serializable {
 	 * @return the dob
 	 */
 	public Date getDob() {
-		return dob;
+		return this.dob == null ? null : (Date) this.dob.clone();
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class User implements Serializable {
 	 *            the dob to set
 	 */
 	public void setDob(Date dob) {
-		this.dob = dob;
+		this.dob = dob == null ? null : dob;
 	}
 
 	/**

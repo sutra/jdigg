@@ -21,17 +21,18 @@ public class HttpUtil {
 	private HttpUtil() {
 	}
 
+	@SuppressWarnings("unchecked")
 	public static String buildOriginalURL(HttpServletRequest request) {
 		StringBuffer originalURL = request.getRequestURL();
 		Map parameters = request.getParameterMap();
 		if (parameters != null && parameters.size() > 0) {
 			originalURL.append("?");
-			for (Iterator iter = parameters.keySet().iterator(); iter.hasNext();) {
-				String key = (String) iter.next();
-				String[] values = (String[]) parameters.get(key);
-				for (int i = 0; i < values.length; i++) {
-					originalURL.append(key).append("=").append(values[i])
-							.append("&");
+			for (Iterator<Map.Entry<String, String[]>> iter = parameters
+					.entrySet().iterator(); iter.hasNext();) {
+				Map.Entry<String, String[]> entry = iter.next();
+				for (int i = 0; i < entry.getValue().length; i++) {
+					originalURL.append(entry.getKey()).append("=").append(
+							entry.getValue()[i]).append("&");
 				}
 			}
 		}
@@ -39,23 +40,10 @@ public class HttpUtil {
 	}
 
 	public static String buildOriginalGETURL(HttpServletRequest request) {
-		StringBuffer originalURL = request.getRequestURL();
 		if (WebContentGenerator.METHOD_POST.equals(request.getMethod())) {
-			return originalURL.toString();
+			return request.getRequestURL().toString();
 		}
-		Map parameters = request.getParameterMap();
-		if (parameters != null && parameters.size() > 0) {
-			originalURL.append("?");
-			for (Iterator iter = parameters.keySet().iterator(); iter.hasNext();) {
-				String key = (String) iter.next();
-				String[] values = (String[]) parameters.get(key);
-				for (int i = 0; i < values.length; i++) {
-					originalURL.append(key).append("=").append(values[i])
-							.append("&");
-				}
-			}
-		}
-		return originalURL.toString();
+		return buildOriginalURL(request);
 	}
 
 	public static void printCookie(HttpServletRequest request) {

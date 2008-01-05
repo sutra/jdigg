@@ -42,7 +42,7 @@ public class Vote implements Serializable {
 	 * @return the date
 	 */
 	public Date getDate() {
-		return date;
+		return this.date == null ? null : (Date) this.date.clone();
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class Vote implements Serializable {
 	 *            the date to set
 	 */
 	public void setDate(Date date) {
-		this.date = date;
+		this.date = date == null ? null : (Date) date.clone();
 	}
 
 	/**
