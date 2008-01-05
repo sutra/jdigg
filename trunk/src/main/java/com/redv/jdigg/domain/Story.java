@@ -27,6 +27,8 @@ public class Story implements Serializable {
 
 	private String body;
 
+	private Category category;
+
 	private User digger;
 
 	private Date date;
@@ -41,6 +43,7 @@ public class Story implements Serializable {
 	 * 
 	 */
 	public Story() {
+		category = new Category();
 		digger = new User();
 		date = new Date();
 	}
@@ -103,6 +106,21 @@ public class Story implements Serializable {
 	 */
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	/**
+	 * @return category
+	 */
+	public Category getCategory() {
+		return category;
+	}
+
+	/**
+	 * @param category
+	 *            要设置的 category
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	/**

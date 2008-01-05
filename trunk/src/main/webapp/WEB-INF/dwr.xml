@@ -7,6 +7,7 @@
 		<create creator="new" javascript="User">
 			<param name="class" value="com.redv.jdigg.web.dwr.User" />
 		</create>
+		<convert converter="bean" match="com.redv.jdigg.domain.Category" />
 		<convert converter="bean" match="com.redv.jdigg.domain.Story">
 			<param name="include" value="id, votes" />
 		</convert>

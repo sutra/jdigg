@@ -14,6 +14,7 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+import com.redv.jdigg.domain.Category;
 import com.redv.jdigg.domain.Story;
 import com.redv.jdigg.service.DiggService;
 
@@ -50,14 +51,23 @@ public abstract class PopularStoriesController implements Controller {
 	 */
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		Map<String, Object> model = new HashMap<String, Object>();
+
 		int firstResult = NumberUtils.toInt(
 				request.getParameter("firstResult"), 0);
 		int maxResults = NumberUtils.toInt(request.getParameter("maxResults"),
 				15);
-		Map<String, Object> model = new HashMap<String, Object>();
+
 		model.put("firstResult", firstResult);
 		model.put("maxResults", maxResults);
-		model.put("stories", this.getStories(firstResult, maxResults));
+
+		Category category = null;
+		String categoryName = request.getParameter("categoryName");
+		if (categoryName != null) {
+			category = this.diggService.getCategoryByName(categoryName);
+			model.put("category", category);
+		}
+		model.put("stories", getStories(category, firstResult, maxResults));
 		return new ModelAndView(this.getView(), model);
 	}
 
@@ -65,5 +75,6 @@ public abstract class PopularStoriesController implements Controller {
 		return view;
 	}
 
-	protected abstract List<Story> getStories(int firstResult, int maxResults);
+	protected abstract List<Story> getStories(Category category,
+			int firstResult, int maxResults);
 }

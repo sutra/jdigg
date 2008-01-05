@@ -18,6 +18,9 @@
 		<property name="hits" column="story_hits" />
 		<property name="votes" column="story_votes" />
 		<property name="rank" column="story_rank" />
+		<many-to-one name="category" column="story_category"
+			not-null="true">
+		</many-to-one>
 		<many-to-one name="digger" column="story_digger" not-null="true"
 			update="false" />
 	</class>

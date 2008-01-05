@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.redv.jdigg.domain">
+	<class name="Category" table="jdigg_category">
+		<id name="id" column="category_id" type="java.lang.String"
+			length="32">
+			<generator class="uuid" />
+		</id>
+		<property name="name" column="category_name" unique="true"
+			index="name" length="32" />
+		<property name="title" column="category_title" length="75" />
+	</class>
+</hibernate-mapping>

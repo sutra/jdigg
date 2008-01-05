@@ -65,6 +65,9 @@
 					com/redv/jdigg/dao/hibernate3/User.hbm.xml
 				</value>
 				<value>
+					com/redv/jdigg/dao/hibernate3/Category.hbm.xml
+				</value>
+				<value>
 					com/redv/jdigg/dao/hibernate3/Story.hbm.xml
 				</value>
 				<value>
@@ -75,6 +78,10 @@
 	</bean>
 	<bean id="userDao"
 		class="com.redv.jdigg.dao.hibernate3.UserDaoHibernate3">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="categoryDao"
+		class="com.redv.jdigg.dao.hibernate3.CategoryDaoHibernate3">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="storyDao"

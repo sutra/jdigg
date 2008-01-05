@@ -11,8 +11,8 @@
 <c:otherwise>
 <fieldset>
 <legend><img alt="" src="${ctx}/themes/fresh/images/login-bg.gif" /></legend>
-logged in as<br />
-<c:out value="${currentUser.openid}" /><br />
+logged in as
+<a href="<c:url value="/users/${currentUser.id}" />"><c:out value="${currentUser.nickname}" /></a><br />
 <a href="<c:url value="/profile.html" />">&gt;&gt; Member Area</a><br />
 <a href="<c:url value="/logout.html" />">&gt;&gt; <fmt:message key="Logout" /></a>
 </fieldset>

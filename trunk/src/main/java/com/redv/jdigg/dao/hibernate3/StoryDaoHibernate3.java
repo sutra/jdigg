@@ -8,6 +8,7 @@ import java.util.List;
 import org.hibernate.Query;
 
 import com.redv.jdigg.dao.StoryDao;
+import com.redv.jdigg.domain.Category;
 import com.redv.jdigg.domain.Story;
 
 /**
@@ -38,12 +39,21 @@ public class StoryDaoHibernate3 extends BaseDaoHibernate3<Story> implements
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see com.redv.jdigg.dao.StoryDao#getLastSubmissionsStories(int, int)
+	 * @see com.redv.jdigg.dao.StoryDao#getLastSubmissionsStories(com.redv.jdigg.domain.Category,
+	 *      int, int)
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Story> getLastSubmissionsStories(int firstResult, int maxResults) {
-		Query query = this.getSession().createQuery(
-				"from Story order by date desc");
+	public List<Story> getLastSubmissionsStories(Category category,
+			int firstResult, int maxResults) {
+		Query query = null;
+		if (category == null) {
+			query = this.getSession().createQuery(
+					"from Story order by date desc");
+		} else {
+			query = this.getSession().createQuery(
+					"from Story where category = :category order by date desc");
+			query.setString("category", category.getId());
+		}
 		query.setFirstResult(firstResult);
 		query.setMaxResults(maxResults);
 		return query.list();
@@ -52,12 +62,23 @@ public class StoryDaoHibernate3 extends BaseDaoHibernate3<Story> implements
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see com.redv.jdigg.dao.StoryDao#getVotingStories(int, int)
+	 * @see com.redv.jdigg.dao.StoryDao#getVotingStories(com.redv.jdigg.domain.Category,
+	 *      int, int)
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Story> getVotingStories(int firstResult, int maxResults) {
-		Query query = this.getSession().createQuery(
-				"from Story order by votes desc");
+	public List<Story> getVotingStories(Category category, int firstResult,
+			int maxResults) {
+		Query query = null;
+		if (category == null) {
+			query = this.getSession().createQuery(
+					"from Story order by votes desc");
+		} else {
+			query = this
+					.getSession()
+					.createQuery(
+							"from Story where category = :category order by votes desc");
+			query.setString("category", category.getId());
+		}
 		query.setFirstResult(firstResult);
 		query.setMaxResults(maxResults);
 		return query.list();
@@ -66,12 +87,21 @@ public class StoryDaoHibernate3 extends BaseDaoHibernate3<Story> implements
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see com.redv.jdigg.dao.StoryDao#getHitingStories(int, int)
+	 * @see com.redv.jdigg.dao.StoryDao#getHitingStories(com.redv.jdigg.domain.Category,
+	 *      int, int)
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Story> getHitingStories(int firstResult, int maxResults) {
-		Query query = this.getSession().createQuery(
-				"from Story order by hits desc");
+	public List<Story> getHitingStories(Category category, int firstResult,
+			int maxResults) {
+		Query query = null;
+		if (category == null) {
+			query = this.getSession().createQuery(
+					"from Story order by hits desc");
+		} else {
+			query = this.getSession().createQuery(
+					"from Story where category = :category order by hits desc");
+			query.setString("category", category.getId());
+		}
 		query.setFirstResult(firstResult);
 		query.setMaxResults(maxResults);
 		return query.list();
@@ -80,12 +110,21 @@ public class StoryDaoHibernate3 extends BaseDaoHibernate3<Story> implements
 	/*
 	 * （非 Javadoc）
 	 * 
-	 * @see com.redv.jdigg.dao.StoryDao#getRankingStories(int, int)
+	 * @see com.redv.jdigg.dao.StoryDao#getRankingStories(com.redv.jdigg.domain.Category,
+	 *      int, int)
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Story> getRankingStories(int firstResult, int maxResults) {
-		Query query = this.getSession().createQuery(
-				"from Story order by rank desc");
+	public List<Story> getRankingStories(Category category, int firstResult,
+			int maxResults) {
+		Query query = null;
+		if (category == null) {
+			query = this.getSession().createQuery(
+					"from Story order by rank desc");
+		} else {
+			query = this.getSession().createQuery(
+					"from Story where category = :category order by rank desc");
+			query.setString("category", category.getId());
+		}
 		query.setFirstResult(firstResult);
 		query.setMaxResults(maxResults);
 		return query.list();
