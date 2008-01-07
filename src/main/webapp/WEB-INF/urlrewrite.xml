@@ -12,7 +12,7 @@
 		<to>/top-votes.html?categoryName=$1</to>
 	</rule>
 	<rule>
-		<from>^/users/(.*)$</from>
+		<from>^/u-(.*).html$</from>
 		<to>/user.html?id=$1</to>
 	</rule>
 </urlrewrite>
