@@ -3,10 +3,12 @@
 <c:choose>
 <c:when test="${currentUser == null}">
 <form action="login.html" method="post">
+<div>
 	<input type="text" name="openid_identifier" class="sexy" style="width:80%;" />
 	<input type="submit" value="<fmt:message key="Login" />" />
+</div>
 </form>
-<div align="center"><a href="/openid-providers-c-1.html">No OpenID? Get one <b>here!</b></a></div>
+<div><a href="<c:url value="/openid-providers-c.html" />">No OpenID? Get one <b>here!</b></a></div>
 </c:when>
 <c:otherwise>
 <fieldset>
