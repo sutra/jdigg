@@ -1,6 +1,6 @@
 <%@ include file="/taglibs.jsp" %>
 
-<a href="<c:url value="/" />" title="Home"><img src="http://openiddirectory.com/themes/fresh/images/OpenIDDirectory_Logo_horizontal_353_subtitle.png" alt="<fmt:message key="title" />" border="0" /></a>
+<a href="<c:url value="/" />" title="Home"><img src="http://openiddirectory.com/themes/fresh/images/OpenIDDirectory_Logo_horizontal_353_subtitle.png" alt="<fmt:message key="title" />" /></a>
 
 <ul id="nav">
 <li><a href="<c:url value="/" />" title="Homepage"><fmt:message key="menu.homepage" /></a></li> 

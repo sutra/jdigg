@@ -1,5 +1,6 @@
 <%@ include file="/taglibs.jsp" %>
-<script>
+<script type="text/javascript">
+<!--
 function errorHandler(message, exception) {
 	if (message != null && message != "") {
 		alert(message);
@@ -24,11 +25,14 @@ if (window.addEventListener) {
 } else {
 	window.onload = init;
 }
+//-->
 </script>
 <script type="text/javascript">
+<!--
 	var reply0 = function(data) {
 		if (data != null && typeof data == 'object') dwr.util.setValue('diggs_' + data.id, data.votes);
 	}
+//-->
 </script>
 <c:forEach items="${stories}" var="story">
 <div>
@@ -70,6 +74,6 @@ if (window.addEventListener) {
 </c:forEach>
 
 <div class="pageBar">
-<a href="?firstResult=${firstResult - maxResults}&maxResults=${maxResults}"><fmt:message key="Previous" /></a>
-<a href="?firstResult=${firstResult + maxResults}&maxResults=${maxResults}"><fmt:message key="Next" /></a>
+<a href="?firstResult=${firstResult - maxResults}&amp;maxResults=${maxResults}"><fmt:message key="Previous" /></a>
+<a href="?firstResult=${firstResult + maxResults}&amp;maxResults=${maxResults}"><fmt:message key="Next" /></a>
 </div>
