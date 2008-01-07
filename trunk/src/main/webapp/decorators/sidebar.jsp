@@ -1,5 +1,5 @@
 <%@include file="/taglibs.jsp" %>
-<%@page contentType="text/html; charset=UTF-8" %>
+<%@page contentType="charset=UTF-8" %>
 <h2>广告箱</h2>
 <div class="promotable" style="text-align: center;">
 	<a onmousedown="return clk('524');" href="http://www.mybrand.com.cn" title="我的品牌" class="_blank" style="font-size: 10px;">独立博客</a>
