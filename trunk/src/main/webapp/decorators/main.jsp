@@ -25,6 +25,7 @@
 		jQuery.noConflict();
 		//-->
 		</script>
+		<script type="text/javascript" src="${ctx}/jdigg.js"></script>
 		<decorator:head />
 	</head>
 	<body>
