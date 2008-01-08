@@ -46,7 +46,7 @@
 			</url>
 			<distribution>repo</distribution>
 		</license>
-	</licenses>
+	</licenses>ssion go
 	<scm>
 		<connection>
 			scm:svn:http://jdigg.googlecode.com/svn/trunk/
@@ -200,6 +200,26 @@
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<!-- http://ossi.mobilvox.com/maven-js-plugin/index.html -->
+				<groupId>com.mobilvox.ossi.mojo</groupId>
+				<artifactId>maven-js-plugin</artifactId>
+				<version>1.3</version>
+				<configuration>
+					<excludes>
+						<exclude>**/jquery-1.2.1.min.js</exclude>
+						<exclude>**/prototype.js</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>compress</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-idea-plugin</artifactId>
