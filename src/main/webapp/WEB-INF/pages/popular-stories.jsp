@@ -38,7 +38,7 @@ if (window.addEventListener) {
 <div>
 
 <h3>
-<a href="<c:out value="${story.url}" escapeXml="true" />" onclick="Digg.hit('${story.id}')">
+<a href="<c:out value="${story.url}" escapeXml="true" />" onmousedown="return clk(this, '${story.id}')">
 <c:out value="${story.title}" escapeXml="true" />
 </a>
 </h3>
