@@ -18,14 +18,16 @@ import com.redv.jdigg.domain.User;
  */
 public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 
-	private String login;
+	private String loginPath;
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
+	/**
+	 * Set the login path.
+	 * 
+	 * @param loginPath
+	 *            the login path
+	 */
+	public void setLoginPath(String loginPath) {
+		this.loginPath = loginPath;
 	}
 
 	/*
@@ -37,26 +39,16 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		String path = "";
-		if (request.getContextPath().equals("/")) {
-			path = login;
-		} else {
-			path = request.getContextPath() + login;
-		}
 		HttpSession session = request.getSession();
-		if (session == null) {
-			response.sendRedirect(path);
-			return false;
+		User loginUser = (User) session.getAttribute(Constants.CURRENT_USER);
+		if (loginUser != null) {
+			return true;
 		} else {
-			User loginUser = (User) session
-					.getAttribute(Constants.CURRENT_USER);
-			if (loginUser != null) {
-				return true;
-			}
 			session.setAttribute(Constants.ORIGINAL_URL, HttpUtil
 					.buildOriginalGETURL(request));
+			String loginUrl = request.getContextPath() + loginPath;
+			response.sendRedirect(response.encodeRedirectURL(loginUrl));
+			return false;
 		}
-		response.sendRedirect(path);
-		return false;
 	}
 }

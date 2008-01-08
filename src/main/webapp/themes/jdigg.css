@@ -4,6 +4,10 @@
 	padding: 0px;
 }
 
+fieldset, select {
+	border: 1px dotted #ccc;
+}
+
 label {
 	display: block;
 }

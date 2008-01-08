@@ -85,9 +85,11 @@ public class LoginController implements Controller {
 				}
 				request.getSession().setAttribute(Constants.CURRENT_USER, user);
 				if (StringUtils.isNotBlank(redirectUrl)) {
-					response.sendRedirect(redirectUrl);
+					response.sendRedirect(response
+							.encodeRedirectURL(redirectUrl));
 				} else {
-					response.sendRedirect(request.getContextPath());
+					response.sendRedirect(response.encodeRedirectURL(request
+							.getContextPath()));
 				}
 				return null;
 			} else {
