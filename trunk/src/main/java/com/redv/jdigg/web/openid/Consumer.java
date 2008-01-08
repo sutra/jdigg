@@ -43,7 +43,7 @@ public class Consumer {
 			// configure the return_to URL where your application will
 			// receive
 			// the authentication responses from the OpenID provider
-			String returnToUrl = httpReq.getRequestURL().toString();
+			String returnToUrl = httpResp.encodeURL(httpReq.getRequestURL().toString());
 
 			// perform discovery on the user-supplied identifier
 			List discoveries = manager.discover(userSuppliedString);

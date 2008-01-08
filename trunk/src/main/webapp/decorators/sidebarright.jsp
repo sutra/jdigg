@@ -2,7 +2,7 @@
 <div>
 <c:choose>
 <c:when test="${currentUser == null}">
-<form action="login.html" method="post">
+<form action="<c:url value="/login.html" />" method="post">
 <div>
 	<input type="text" name="openid_identifier" class="sexy" style="width:80%;" />
 	<input type="submit" value="<fmt:message key="Login" />" />
