@@ -115,6 +115,7 @@
 				/top-votes.html=topVotesController
 				/top-hits.html=topHitsController
 				/top-rank.html=topRankController
+				/hit.html=homepageController
 			</value>
 		</property>
 		<property name="interceptors">

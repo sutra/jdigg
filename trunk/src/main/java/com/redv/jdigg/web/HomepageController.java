@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+import com.redv.jdigg.StoryNotFoundException;
 import com.redv.jdigg.service.DiggService;
 
 /**
@@ -57,5 +58,22 @@ public class HomepageController extends MultiActionController {
 			HttpServletResponse response) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		return new ModelAndView("categories", model);
+	}
+
+	/**
+	 * Hit the story.
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws StoryNotFoundException
+	 */
+	public ModelAndView hit(HttpServletRequest request,
+			HttpServletResponse response) throws StoryNotFoundException {
+		String storyId = request.getParameter("id");
+		if (storyId != null) {
+			this.diggService.hit(storyId);
+		}
+		return null;
 	}
 }
