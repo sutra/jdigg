@@ -1,7 +1,7 @@
 <%@ include file="/taglibs.jsp" %>
 <div style="text-align: center;">
 <c:if test="${!empty category}">
-<h1 style="text-align: center; font-size: 14px;"><a href="./" title="Home">Home</a> &gt; <a href="${category.name}-c.html">${category.title}</a></h1>
+<h1 style="text-align: center; font-size: 14px;"><a href="<c:url value="./" />" title="Home">Home</a> &gt; <a href="<c:url value="${category.name}-c.html" />">${category.title}</a></h1>
 </c:if>
 </div>
 <c:if test="${empty category}">
